@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "refinedstorageaddons:items/wireless_crafting_grid_disconnected"
+  }
+}

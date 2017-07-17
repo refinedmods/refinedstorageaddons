@@ -1,0 +1,15 @@
+[
+    {
+      "modid": "refinedstorageaddons",
+      "name": "Refined Storage Addons",
+      "description": "An addon mod for Refined Storage",
+      "version": "0.1",
+      "mcversion": "1.12",
+      "url": "",
+      "updateUrl": "",
+      "authorList": ["Refined Storage Addons contributors"],
+      "credits": "",
+      "screenshots": [],
+      "dependencies": []
+    }
+]

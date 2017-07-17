@@ -1,0 +1,49 @@
+buildscript {
+    repositories {
+        jcenter()
+        maven { url = "http://files.minecraftforge.net/maven" }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+    }
+}
+apply plugin: 'net.minecraftforge.gradle.forge'
+
+version = "0.1"
+group = "refinedstorageaddons"
+archivesBaseName = "refinedstorageaddons"
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+minecraft {
+    version = "1.12-14.21.1.2400"
+    runDir = "run"
+    useDepAts = true
+    mappings = "snapshot_20170707"
+}
+
+repositories {
+	maven {
+		url  "https://dl.bintray.com/raoulvdberge/dev/"
+	}
+}
+
+dependencies {
+    deobfCompile "refinedstorage:refinedstorage:1.5.12-1273"
+}
+
+processResources {
+    inputs.property "version", project.version
+    inputs.property "mcversion", project.minecraft.version
+
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
+
+        expand 'version':project.version, 'mcversion':project.minecraft.version
+    }
+
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'mcmod.info'
+    }
+}

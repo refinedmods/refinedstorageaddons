@@ -1,0 +1,20 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "refinedstorageaddons:items/wireless_crafting_grid_disconnected"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "connected": 0
+      },
+      "model": "refinedstorageaddons:item/wireless_crafting_grid_disconnected"
+    },
+    {
+      "predicate": {
+        "connected": 1
+      },
+      "model": "refinedstorageaddons:item/wireless_crafting_grid_connected"
+    }
+  ]
+}
