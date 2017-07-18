@@ -54,11 +54,13 @@ public class NetworkItemWirelessCraftingGrid extends NetworkItemWirelessGrid {
         }
     }
 
+    // @todo: Cleanup
     @Override
     public int getInsertUsage() {
         return RSAddons.INSTANCE.config.wirelessCraftingGridInsertUsage;
     }
 
+    // @todo: Cleanup
     @Override
     public int getExtractUsage() {
         return RSAddons.INSTANCE.config.wirelessCraftingGridExtractUsage;
