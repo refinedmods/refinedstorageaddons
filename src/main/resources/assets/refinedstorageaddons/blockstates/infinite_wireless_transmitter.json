@@ -1,0 +1,25 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "torch",
+    "textures": {
+      "torch": "refinedstorageaddons:blocks/infinite_wireless_transmitter_disconnected"
+    }
+  },
+  "variants": {
+    "inventory": [
+      {
+        "transform": "forge:default-block"
+      }
+    ],
+    "connected": {
+      "true": {
+        "textures": {
+          "torch": "refinedstorageaddons:blocks/infinite_wireless_transmitter_connected"
+        }
+      },
+      "false": {
+      }
+    }
+  }
+}

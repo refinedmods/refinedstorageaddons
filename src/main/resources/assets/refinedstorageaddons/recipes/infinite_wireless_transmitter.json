@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " E ",
+    " R ",
+    "WNW"
+  ],
+  "key": {
+    "W": {
+      "item": "refinedstorage:wireless_transmitter"
+    },
+    "N": {
+      "item": "minecraft:nether_star"
+    },
+    "R": {
+      "item": "minecraft:end_rod"
+    },
+    "E": {
+      "item": "minecraft:ender_pearl"
+    }
+  },
+  "result": {
+    "item": "refinedstorageaddons:infinite_wireless_transmitter"
+  }
+}
