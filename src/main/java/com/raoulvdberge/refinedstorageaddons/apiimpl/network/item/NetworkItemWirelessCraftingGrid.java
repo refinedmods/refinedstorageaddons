@@ -1,4 +1,4 @@
-package com.raoulvdberge.refinedstorageaddons.item;
+package com.raoulvdberge.refinedstorageaddons.apiimpl.network.item;
 
 import com.raoulvdberge.refinedstorage.api.network.INetwork;
 import com.raoulvdberge.refinedstorage.api.network.item.INetworkItemHandler;
@@ -7,6 +7,8 @@ import com.raoulvdberge.refinedstorage.api.network.security.Permission;
 import com.raoulvdberge.refinedstorage.apiimpl.network.item.NetworkItemWirelessGrid;
 import com.raoulvdberge.refinedstorage.util.WorldUtils;
 import com.raoulvdberge.refinedstorageaddons.RSAddons;
+import com.raoulvdberge.refinedstorageaddons.item.ItemWirelessCraftingGrid;
+import com.raoulvdberge.refinedstorageaddons.item.WirelessCraftingGrid;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;

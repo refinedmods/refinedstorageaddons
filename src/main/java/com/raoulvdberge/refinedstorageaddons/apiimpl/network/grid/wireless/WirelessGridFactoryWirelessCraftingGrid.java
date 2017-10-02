@@ -1,7 +1,8 @@
-package com.raoulvdberge.refinedstorageaddons.item;
+package com.raoulvdberge.refinedstorageaddons.apiimpl.network.grid.wireless;
 
 import com.raoulvdberge.refinedstorage.api.network.grid.IGrid;
 import com.raoulvdberge.refinedstorage.api.network.grid.wireless.IWirelessGridFactory;
+import com.raoulvdberge.refinedstorageaddons.item.WirelessCraftingGrid;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumHand;
 

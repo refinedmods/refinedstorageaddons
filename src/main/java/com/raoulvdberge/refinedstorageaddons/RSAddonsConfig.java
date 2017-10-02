@@ -18,6 +18,11 @@ public final class RSAddonsConfig {
     public int infiniteWirelessTransmitterUsage;
     //endRegion
 
+    //region Network Picker
+    public int networkPickerUsage;
+    public boolean networkPickerUsesEnergy;
+    //endRegion
+
     //region Infinite Wireless Transmitter
     public int infiniteWirelessTransmitterRange;
     //endregion
@@ -32,6 +37,7 @@ public final class RSAddonsConfig {
 
     //region Categories
     private static final String ENERGY = "energy";
+    private static final String NETWORK_PICKER = "networkPicker";
     private static final String INFINITE_WIRELESS_TRANSMITTER = "infiniteWirelessTransmitter";
     private static final String WIRELESS_CRAFTING_GRID = "wirelessCraftingGrid";
     //endregion
@@ -60,6 +66,11 @@ public final class RSAddonsConfig {
         infiniteWirelessTransmitterUsage = config.getInt("infiniteWirelessTransmitterUsage", ENERGY, 1000, 0, Integer.MAX_VALUE, "The energy used by the Infinite Wireless Transmitter");
         //endRegion
 
+        //region Network Picker
+        networkPickerUsesEnergy = config.getBoolean("usesEnergy", NETWORK_PICKER, true, "Whether the Network Picker uses energy");
+        networkPickerUsage = config.getInt("usage", NETWORK_PICKER, 45, 0, Integer.MAX_VALUE, "The energy used by the Network Picker");
+        //endRegion
+
         //region Infinite Wireless Transmitter
         infiniteWirelessTransmitterRange = config.getInt("infiniteWirelessTransmitterRange", INFINITE_WIRELESS_TRANSMITTER, Integer.MAX_VALUE, 0, Integer.MAX_VALUE, "The range of the Infinite Wireless Transmitter");
         //endRegion
@@ -82,6 +93,7 @@ public final class RSAddonsConfig {
         List<IConfigElement> list = new ArrayList<>();
 
         list.addAll(new ConfigElement(config.getCategory(ENERGY)).getChildElements());
+        list.addAll(new ConfigElement(config.getCategory(NETWORK_PICKER)).getChildElements());
         list.addAll(new ConfigElement(config.getCategory(INFINITE_WIRELESS_TRANSMITTER)).getChildElements());
         list.addAll(new ConfigElement(config.getCategory(WIRELESS_CRAFTING_GRID)).getChildElements());
 

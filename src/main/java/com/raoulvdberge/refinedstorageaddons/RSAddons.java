@@ -11,6 +11,8 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 
 @Mod(modid = RSAddons.ID, version = RSAddons.VERSION, dependencies = RSAddons.DEPENDENCIES, acceptedMinecraftVersions = "[1.12,1.13)", guiFactory = RSAddons.GUI_FACTORY)
 public final class RSAddons {
@@ -26,6 +28,7 @@ public final class RSAddons {
     public static RSAddons INSTANCE;
 
     public RSAddonsConfig config;
+    public final SimpleNetworkWrapper network = NetworkRegistry.INSTANCE.newSimpleChannel(ID);
     public final CreativeTabs tab = new CreativeTabs(RSAddons.ID) {
         @Override
         public ItemStack getTabIconItem() {
