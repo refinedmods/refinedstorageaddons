@@ -1,0 +1,20 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "refinedstorageaddons:items/network_bag_disconnected"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "connected": 0
+      },
+      "model": "refinedstorageaddons:item/network_bag_disconnected"
+    },
+    {
+      "predicate": {
+        "connected": 1
+      },
+      "model": "refinedstorageaddons:item/network_bag_connected"
+    }
+  ]
+}

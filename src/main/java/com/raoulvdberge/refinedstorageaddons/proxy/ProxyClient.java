@@ -19,11 +19,11 @@ public class ProxyClient extends ProxyCommon {
     @SubscribeEvent
     public void registerModels(ModelBakeEvent e) {
         ModelLoader.setCustomModelResourceLocation(RSAddonsItems.WIRELESS_CRAFTING_GRID, 0, new ModelResourceLocation("refinedstorageaddons:wireless_crafting_grid", "inventory"));
+        ModelLoader.setCustomModelResourceLocation(RSAddonsItems.NETWORK_PICKER, 0, new ModelResourceLocation("refinedstorageaddons:network_picker", "inventory"));
+        ModelLoader.setCustomModelResourceLocation(RSAddonsItems.NETWORK_BAG, 0, new ModelResourceLocation("refinedstorageaddons:network_bag", "inventory"));
 
         ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(RSAddonsBlocks.INFINITE_WIRELESS_TRANSMITTER), 0, new ModelResourceLocation("refinedstorageaddons:infinite_wireless_transmitter", "inventory"));
         ModelLoader.setCustomStateMapper(RSAddonsBlocks.INFINITE_WIRELESS_TRANSMITTER, new StateMapperCTM("refinedstorageaddons:infinite_wireless_transmitter"));
-
-        ModelLoader.setCustomModelResourceLocation(RSAddonsItems.NETWORK_PICKER, 0, new ModelResourceLocation("refinedstorageaddons:network_picker", "inventory"));
     }
 
     private long lastPickBlock;

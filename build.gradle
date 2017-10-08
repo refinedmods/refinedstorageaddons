@@ -30,7 +30,7 @@ repositories {
 }
 
 dependencies {
-    deobfCompile "refinedstorage:refinedstorage:1.5.19-1368"
+    deobfCompile "refinedstorage:refinedstorage:1.5.19-1377"
 }
 
 processResources {

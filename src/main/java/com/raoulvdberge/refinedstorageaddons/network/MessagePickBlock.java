@@ -2,16 +2,22 @@ package com.raoulvdberge.refinedstorageaddons.network;
 
 import com.raoulvdberge.refinedstorage.network.MessageHandlerPlayerToServer;
 import com.raoulvdberge.refinedstorageaddons.RSAddonsItems;
+import com.raoulvdberge.refinedstorageaddons.item.ItemNetworkPicker;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.util.EnumHand;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 
 public class MessagePickBlock extends MessageHandlerPlayerToServer<MessagePickBlock> implements IMessage {
     @Override
     protected void handle(MessagePickBlock message, EntityPlayerMP player) {
-        if (!player.capabilities.isCreativeMode && player.getHeldItemOffhand().getItem() == RSAddonsItems.NETWORK_PICKER) {
-            player.getHeldItemOffhand().getItem().onItemRightClick(player.world, player, EnumHand.OFF_HAND);
+        ItemStack held = player.getHeldItemOffhand();
+        if (!player.capabilities.isCreativeMode && held.getItem() == RSAddonsItems.NETWORK_PICKER) {
+            ItemNetworkPicker picker = (ItemNetworkPicker) held.getItem();
+
+            picker.applyNetwork(held, n -> picker.doPick(n, player, held), e -> {
+                // NO OP
+            });
         }
     }
 

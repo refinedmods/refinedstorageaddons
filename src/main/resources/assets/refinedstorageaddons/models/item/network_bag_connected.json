@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "refinedstorageaddons:items/network_bag_connected"
+  }
+}

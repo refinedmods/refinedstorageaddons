@@ -4,6 +4,7 @@
 - Updated Forge to 2493 (MC 1.12.2) (raoulvdberge)
 - Added Infinite Wireless Transmitter (can be configured) (raoulvdberge)
 - Added Network Picker (raoulvdberge)
+- Added Network Bag (raoulvdberge)
 
 ### 0.1.1
 - Refined Storage 1.5.13 compatibility (raoulvdberge)

@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "HPH",
+    "ECE",
+    "EIE"
+  ],
+  "key": {
+    "E": {
+      "item": "refinedstorage:quartz_enriched_iron"
+    },
+    "P": {
+      "item": "minecraft:ender_pearl"
+    },
+    "C": {
+      "item": "refinedstorage:core",
+      "data": 1
+    },
+    "I": {
+      "item": "refinedstorage:processor",
+      "data": 4
+    },
+    "H": {
+      "item": "minecraft:chest"
+    }
+  },
+  "result": {
+    "item": "refinedstorageaddons:network_bag",
+    "data": 0
+  }
+}
