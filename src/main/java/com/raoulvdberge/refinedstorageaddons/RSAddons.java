@@ -20,7 +20,7 @@ public final class RSAddons {
     public static IRSAPI RSAPI;
 
     public static final String ID = "refinedstorageaddons";
-    public static final String VERSION = "0.2";
+    public static final String VERSION = "0.3";
     public static final String DEPENDENCIES = "required-after:refinedstorage@[1.5.19,);";
     public static final String GUI_FACTORY = "com.raoulvdberge.refinedstorageaddons.gui.config.ModGuiFactory";
 
