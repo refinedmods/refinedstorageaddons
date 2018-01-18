@@ -1,5 +1,8 @@
 # Refined Storage Addons Changelog
 
+### 0.3
+- Fixed stack-crafting in the Wireless Crafting Grid (crafting table) causing lag on a dedicated server (raoulvdberge)
+
 ### 0.2
 - Updated Forge to 2493 (MC 1.12.2) (raoulvdberge)
 - Added Infinite Wireless Transmitter (can be configured) (raoulvdberge)

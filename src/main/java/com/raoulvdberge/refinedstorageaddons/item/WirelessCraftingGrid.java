@@ -11,6 +11,7 @@ import net.minecraft.inventory.InventoryCraftResult;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
+import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.DimensionManager;
 
@@ -29,6 +30,7 @@ public class WirelessCraftingGrid extends WirelessGrid {
             onCraftingMatrixChanged();
         }
     };
+    private IRecipe currentRecipe;
     private InventoryCrafting matrix = new InventoryCrafting(craftingContainer, 3, 3);
     private InventoryCraftResult result = new InventoryCraftResult();
 
@@ -64,7 +66,15 @@ public class WirelessCraftingGrid extends WirelessGrid {
 
     @Override
     public void onCraftingMatrixChanged() {
-        result.setInventorySlotContents(0, CraftingManager.findMatchingResult(matrix, DimensionManager.getWorld(controllerDimension)));
+        if (currentRecipe == null || !currentRecipe.matches(matrix, DimensionManager.getWorld(controllerDimension))) {
+            currentRecipe = CraftingManager.findMatchingRecipe(matrix, DimensionManager.getWorld(controllerDimension));
+        }
+
+        if (currentRecipe == null) {
+            result.setInventorySlotContents(0, ItemStack.EMPTY);
+        } else {
+            result.setInventorySlotContents(0, currentRecipe.getCraftingResult(matrix));
+        }
 
         if (!getStack().hasTagCompound()) {
             getStack().setTagCompound(new NBTTagCompound());
