@@ -10,7 +10,6 @@ import com.raoulvdberge.refinedstorageaddons.RSAddons;
 import com.raoulvdberge.refinedstorageaddons.item.ItemWirelessCraftingGrid;
 import com.raoulvdberge.refinedstorageaddons.item.WirelessCraftingGrid;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
 import net.minecraftforge.energy.CapabilityEnergy;
@@ -40,8 +39,6 @@ public class NetworkItemWirelessCraftingGrid extends NetworkItemWirelessGrid {
         }
 
         RSAddons.RSAPI.openWirelessGrid(player, hand, network.world().provider.getDimension(), WirelessCraftingGrid.ID);
-
-        network.sendItemStorageToClient((EntityPlayerMP) player);
 
         drainEnergy(RSAddons.INSTANCE.config.wirelessCraftingGridOpenUsage);
 

@@ -1,7 +1,7 @@
 package com.raoulvdberge.refinedstorageaddons.gui;
 
 import com.raoulvdberge.refinedstorage.gui.GuiBase;
-import com.raoulvdberge.refinedstorage.gui.sidebutton.SideButtonRedstoneMode;
+import com.raoulvdberge.refinedstorage.gui.control.SideButtonRedstoneMode;
 import com.raoulvdberge.refinedstorageaddons.RSAddons;
 import com.raoulvdberge.refinedstorageaddons.container.ContainerInfiniteWirelessTransmitter;
 import com.raoulvdberge.refinedstorageaddons.tile.TileInfiniteWirelessTransmitter;
