@@ -8,6 +8,8 @@ buildscript {
     }
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
+apply plugin: 'maven'
+apply plugin: 'maven-publish'
 
 version = "0.3"
 group = "refinedstorageaddons"
@@ -25,12 +27,12 @@ minecraft {
 
 repositories {
 	maven {
-		url  "https://dl.bintray.com/raoulvdberge/dev/"
+		url  "https://repo.raoulvdberge.com"
 	}
 }
 
 dependencies {
-    deobfCompile "refinedstorage:refinedstorage:1.5.33-1539"
+    deobfCompile "refinedstorage:refinedstorage:1.5.34-10"
 }
 
 processResources {
@@ -45,5 +47,30 @@ processResources {
 
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
+    }
+}
+
+jar {
+    include "com/raoulvdberge/refinedstorageaddons/**"
+    include "mcmod.info"
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId = project.group
+            artifactId = project.archivesBaseName
+            version = project.version + '-' + System.getenv('BUILD_NUMBER')
+            artifact sourceJar
+            artifact jar
+        }
+    }
+}
+
+publishing {
+    repositories {
+        maven {
+          url "/var/www/repo"
+        }
     }
 }
