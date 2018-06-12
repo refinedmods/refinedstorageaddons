@@ -1,5 +1,9 @@
 # Refined Storage Addons Changelog
 
+### 0.4
+- Removed Network Bag (raoulvdberge)
+- Removed Network Picker (raoulvdberge)
+
 ### 0.3
 - Fixed stack-crafting in the Wireless Crafting Grid (crafting table) causing lag on a dedicated server (raoulvdberge)
 - Refined Storage 1.5.33 compatibility (raoulvdberge)
