@@ -57,4 +57,13 @@ public class ProxyCommon {
 
         e.getRegistry().register(RSAddonsBlocks.INFINITE_WIRELESS_TRANSMITTER.createItem());
     }
+
+    @SubscribeEvent
+    public void fixItemMappings(RegistryEvent.MissingMappings<Item> e) {
+        for (RegistryEvent.MissingMappings.Mapping<Item> missing : e.getMappings()) {
+            if (missing.key.getResourceDomain().equals(RSAddons.ID) && (missing.key.getResourcePath().equals("network_bag") || missing.key.getResourcePath().equals("network_picker"))) {
+                missing.ignore();
+            }
+        }
+    }
 }
