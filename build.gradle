@@ -52,7 +52,9 @@ processResources {
 
 jar {
     include "com/raoulvdberge/refinedstorageaddons/**"
+    include "assets/**"
     include "mcmod.info"
+    include "pack.mcmeta"
 }
 
 publishing {
