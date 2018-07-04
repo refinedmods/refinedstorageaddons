@@ -1,6 +1,6 @@
 package com.raoulvdberge.refinedstorageaddons.proxy;
 
-import com.raoulvdberge.refinedstorage.render.StateMapperCTM;
+import com.raoulvdberge.refinedstorage.render.statemapper.StateMapperCTM;
 import com.raoulvdberge.refinedstorageaddons.RSAddonsBlocks;
 import com.raoulvdberge.refinedstorageaddons.RSAddonsItems;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
