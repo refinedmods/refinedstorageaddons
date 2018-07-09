@@ -2,7 +2,7 @@ package com.raoulvdberge.refinedstorageaddons.block;
 
 import com.raoulvdberge.refinedstorage.block.BlockCable;
 import com.raoulvdberge.refinedstorage.block.BlockNode;
-import com.raoulvdberge.refinedstorage.block.Direction;
+import com.raoulvdberge.refinedstorage.block.info.BlockInfoBuilder;
 import com.raoulvdberge.refinedstorageaddons.RSAddons;
 import com.raoulvdberge.refinedstorageaddons.RSAddonsGui;
 import com.raoulvdberge.refinedstorageaddons.tile.TileInfiniteWirelessTransmitter;
@@ -12,7 +12,6 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -30,34 +29,14 @@ public class BlockInfiniteWirelessTransmitter extends BlockNode {
     private static final AxisAlignedBB INFINITE_WIRELESS_TRANSMITTER_AABB = new AxisAlignedBB(0.4000000059604645D, 0.0D, 0.4000000059604645D, 0.6000000238418579D, 0.6000000238418579D, 0.6000000238418579D);
 
     public BlockInfiniteWirelessTransmitter() {
-        super("infinite_wireless_transmitter");
+        super(BlockInfoBuilder.forMod(RSAddons.INSTANCE, RSAddons.ID, "infinite_wireless_transmitter").tileEntity(TileInfiniteWirelessTransmitter::new).create());
 
         setCreativeTab(RSAddons.INSTANCE.tab);
     }
 
     @Override
-    protected String getDomain() {
-        return RSAddons.ID;
-    }
-
-    @Override
-    protected Object getModObject() {
-        return RSAddons.INSTANCE;
-    }
-
-    @Nullable
-    @Override
-    public TileEntity createTileEntity(World world, IBlockState state) {
-        return new TileInfiniteWirelessTransmitter();
-    }
-
-    @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
-        if (!world.isRemote) {
-            tryOpenNetworkGui(RSAddonsGui.INFINITE_WIRELESS_TRANSMITTER, player, world, pos, side);
-        }
-
-        return true;
+        return openNetworkGui(RSAddonsGui.INFINITE_WIRELESS_TRANSMITTER, player, world, pos, side);
     }
 
     @Override
@@ -101,12 +80,6 @@ public class BlockInfiniteWirelessTransmitter extends BlockNode {
     @Override
     public boolean hasConnectivityState() {
         return true;
-    }
-
-    @Override
-    @Nullable
-    public Direction getDirection() {
-        return null;
     }
 
     @Override
