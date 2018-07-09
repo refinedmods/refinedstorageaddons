@@ -78,7 +78,7 @@ public class BlockInfiniteWirelessTransmitter extends BlockNode {
     }
 
     @Override
-    public boolean hasConnectivityState() {
+    public boolean hasConnectedState() {
         return true;
     }
 

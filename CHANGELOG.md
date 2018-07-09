@@ -1,6 +1,7 @@
 # Refined Storage Addons Changelog
 
 ### 0.4
+- Refined Storage 1.6 compatibility (raoulvdberge)
 - Removed Network Bag (raoulvdberge)
 - Removed Network Picker (raoulvdberge)
 
