@@ -1,6 +1,7 @@
 package com.raoulvdberge.refinedstorageaddons.proxy;
 
 import com.raoulvdberge.refinedstorage.apiimpl.network.node.NetworkNode;
+import com.raoulvdberge.refinedstorage.apiimpl.util.OneSixMigrationHelper;
 import com.raoulvdberge.refinedstorageaddons.RSAddons;
 import com.raoulvdberge.refinedstorageaddons.RSAddonsBlocks;
 import com.raoulvdberge.refinedstorageaddons.RSAddonsItems;
@@ -60,6 +61,8 @@ public class ProxyCommon {
 
     @SubscribeEvent
     public void fixItemMappings(RegistryEvent.MissingMappings<Item> e) {
+        OneSixMigrationHelper.removalHook();
+
         for (RegistryEvent.MissingMappings.Mapping<Item> missing : e.getMappings()) {
             if (missing.key.getResourceDomain().equals(RSAddons.ID) && (missing.key.getResourcePath().equals("network_bag") || missing.key.getResourcePath().equals("network_picker"))) {
                 missing.ignore();

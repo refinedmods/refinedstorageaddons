@@ -1,9 +1,10 @@
 {
   "forge_marker": 1,
   "defaults": {
-    "model": "torch",
+    "model": "refinedstorage:wireless_transmitter",
     "textures": {
-      "torch": "refinedstorageaddons:blocks/infinite_wireless_transmitter_disconnected"
+      "torch": "refinedstorageaddons:blocks/infinite_wireless_transmitter",
+      "cutout": "refinedstorageaddons:blocks/infinite_wireless_transmitter_disconnected"
     }
   },
   "variants": {
@@ -15,7 +16,7 @@
     "connected": {
       "true": {
         "textures": {
-          "torch": "refinedstorageaddons:blocks/infinite_wireless_transmitter_connected"
+          "cutout": "refinedstorageaddons:blocks/infinite_wireless_transmitter_connected"
         }
       },
       "false": {
