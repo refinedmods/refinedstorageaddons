@@ -12,6 +12,11 @@ apply plugin: 'maven'
 apply plugin: 'maven-publish'
 
 version = "0.4"
+def env = System.getenv()
+if (env.BUILD_NUMBER) {
+    version = version + "-" + "${env.BUILD_NUMBER}"
+}
+
 group = "refinedstorageaddons"
 archivesBaseName = "refinedstorageaddons"
 
@@ -23,6 +28,9 @@ minecraft {
     runDir = "run"
     useDepAts = true
     mappings = "snapshot_20180526"
+
+    replaceIn "RSAddons.java"
+    replace "@version@", project.version
 }
 
 repositories {
