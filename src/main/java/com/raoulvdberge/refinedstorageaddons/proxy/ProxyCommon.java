@@ -64,7 +64,7 @@ public class ProxyCommon {
         OneSixMigrationHelper.removalHook();
 
         for (RegistryEvent.MissingMappings.Mapping<Item> missing : e.getMappings()) {
-            if (missing.key.getResourceDomain().equals(RSAddons.ID) && (missing.key.getResourcePath().equals("network_bag") || missing.key.getResourcePath().equals("network_picker"))) {
+            if (missing.key.getNamespace().equals(RSAddons.ID) && (missing.key.getPath().equals("network_bag") || missing.key.getPath().equals("network_picker"))) {
                 missing.ignore();
             }
         }

@@ -1,6 +1,7 @@
 # Refined Storage Addons Changelog
 
 ### 0.4.1
+- Refined Storage 1.6.1 compatibility (raoulvdberge)
 - Added Russian translation (kellixon)
 
 ### 0.4

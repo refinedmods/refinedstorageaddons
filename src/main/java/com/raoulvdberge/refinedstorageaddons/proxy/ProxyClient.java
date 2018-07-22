@@ -20,7 +20,7 @@ public class ProxyClient extends ProxyCommon {
     @SubscribeEvent
     public void onModelBake(ModelBakeEvent e) {
         for (ModelResourceLocation resource : e.getModelRegistry().getKeys()) {
-            if (resource.getResourceDomain().equals(RSAddons.ID) && resource.getResourcePath().equals("infinite_wireless_transmitter")) {
+            if (resource.getNamespace().equals(RSAddons.ID) && resource.getPath().equals("infinite_wireless_transmitter")) {
                 e.getModelRegistry().putObject(resource, new BakedModelFullbright(e.getModelRegistry().getObject(resource), RSAddons.ID + ":blocks/infinite_wireless_transmitter_connected"));
             }
         }

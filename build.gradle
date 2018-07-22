@@ -27,7 +27,7 @@ minecraft {
     version = "1.12.2-14.23.4.2703"
     runDir = "run"
     useDepAts = true
-    mappings = "snapshot_20180526"
+    mappings = "snapshot_20180714"
 
     replaceIn "RSAddons.java"
     replace "@version@", project.version
@@ -40,7 +40,7 @@ repositories {
 }
 
 dependencies {
-    deobfCompile "refinedstorage:refinedstorage:1.6-184"
+    deobfCompile "refinedstorage:refinedstorage:1.6.1-227"
 }
 
 processResources {
@@ -70,7 +70,7 @@ publishing {
         mavenJava(MavenPublication) {
             groupId = project.group
             artifactId = project.archivesBaseName
-            version = project.version + '-' + System.getenv('BUILD_NUMBER')
+            version = project.version
             artifact sourceJar
             artifact jar
         }

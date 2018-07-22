@@ -50,7 +50,7 @@ public class WirelessCraftingGrid extends WirelessGrid {
     }
 
     @Override
-    public GridType getType() {
+    public GridType getGridType() {
         return GridType.CRAFTING;
     }
 
