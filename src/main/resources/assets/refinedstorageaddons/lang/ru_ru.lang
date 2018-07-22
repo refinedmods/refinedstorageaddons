@@ -1,0 +1,8 @@
+itemGroup.refinedstorageaddons=Refined Storage Addons
+
+item.refinedstorageaddons:wireless_crafting_grid.0.name=Беспроводная сетка крафта
+item.refinedstorageaddons:wireless_crafting_grid.1.name=Творческая беспроводная сетка крафта
+
+block.refinedstorageaddons:infinite_wireless_transmitter.name=Бесконечный беспроводной передатчик
+
+gui.refinedstorageaddons:infinite_wireless_transmitter=Бесконечный беспроводной передатчик
