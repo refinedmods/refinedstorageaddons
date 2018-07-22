@@ -11,7 +11,7 @@ apply plugin: 'net.minecraftforge.gradle.forge'
 apply plugin: 'maven'
 apply plugin: 'maven-publish'
 
-version = "0.4"
+version = "0.4.1"
 def env = System.getenv()
 if (env.BUILD_NUMBER) {
     version = version + "-" + "${env.BUILD_NUMBER}"
