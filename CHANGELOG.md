@@ -1,5 +1,8 @@
 # Refined Storage Addons Changelog
 
+### 0.4.1
+- Updated Russian translation (kellixon)
+
 ### 0.4
 - Refined Storage 1.6 compatibility (raoulvdberge)
 - Removed Network Bag (raoulvdberge)
