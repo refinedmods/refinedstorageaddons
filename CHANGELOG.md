@@ -1,5 +1,8 @@
 # Refined Storage Addons Changelog
 
+### 0.4.2
+- Removed the Infinite Wireless Transmitter. The author is not interested in feedback about this removal (raoulvdberge)
+
 ### 0.4.1
 - Refined Storage 1.6.1 compatibility (raoulvdberge)
 - Added Russian translation (kellixon)
