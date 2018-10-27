@@ -12,6 +12,6 @@ public class WirelessGridFactoryWirelessCraftingGrid implements IWirelessGridFac
     @Nonnull
     @Override
     public IGrid create(EntityPlayer player, EnumHand hand, int controllerDimension) {
-        return new WirelessCraftingGrid(controllerDimension, player.getHeldItem(hand));
+        return new WirelessCraftingGrid(controllerDimension, player.getHeldItem(hand), !player.getEntityWorld().isRemote);
     }
 }

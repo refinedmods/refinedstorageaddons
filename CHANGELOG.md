@@ -1,5 +1,8 @@
 # Refined Storage Addons Changelog
 
+### 0.4.3
+- Fixed client FPS stuttering when opening a Wireless Crafting Grid (raoulvdberge)
+
 ### 0.4.2
 - Removed the Infinite Wireless Transmitter. The author is not interested in feedback about this removal (raoulvdberge)
 

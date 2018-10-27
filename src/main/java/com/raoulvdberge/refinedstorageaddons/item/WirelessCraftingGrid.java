@@ -1,6 +1,7 @@
 package com.raoulvdberge.refinedstorageaddons.item;
 
 import com.raoulvdberge.refinedstorage.api.network.grid.GridType;
+import com.raoulvdberge.refinedstorage.api.network.grid.IGridCraftingListener;
 import com.raoulvdberge.refinedstorage.apiimpl.network.node.NetworkNodeGrid;
 import com.raoulvdberge.refinedstorage.tile.grid.WirelessGrid;
 import com.raoulvdberge.refinedstorage.util.StackUtils;
@@ -15,6 +16,9 @@ import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.DimensionManager;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class WirelessCraftingGrid extends WirelessGrid {
     public static int ID;
 
@@ -27,17 +31,22 @@ public class WirelessCraftingGrid extends WirelessGrid {
 
         @Override
         public void onCraftMatrixChanged(IInventory inventory) {
-            onCraftingMatrixChanged();
+            if (server) {
+                onCraftingMatrixChanged();
+            }
         }
     };
     private IRecipe currentRecipe;
     private InventoryCrafting matrix = new InventoryCrafting(craftingContainer, 3, 3);
     private InventoryCraftResult result = new InventoryCraftResult();
+    private boolean server;
+    private Set<IGridCraftingListener> craftingListeners = new HashSet<>();
 
-    public WirelessCraftingGrid(int controllerDimension, ItemStack stack) {
+    public WirelessCraftingGrid(int controllerDimension, ItemStack stack, boolean server) {
         super(controllerDimension, stack);
 
         this.controllerDimension = controllerDimension;
+        this.server = server;
 
         if (stack.hasTagCompound()) {
             StackUtils.readItems(matrix, 1, stack.getTagCompound());
@@ -76,6 +85,8 @@ public class WirelessCraftingGrid extends WirelessGrid {
             result.setInventorySlotContents(0, currentRecipe.getCraftingResult(matrix));
         }
 
+        craftingListeners.forEach(IGridCraftingListener::onCraftingMatrixChanged);
+
         if (!getStack().hasTagCompound()) {
             getStack().setTagCompound(new NBTTagCompound());
         }
@@ -96,5 +107,15 @@ public class WirelessCraftingGrid extends WirelessGrid {
     @Override
     public void onRecipeTransfer(EntityPlayer player, ItemStack[][] recipe) {
         NetworkNodeGrid.onRecipeTransfer(this, player, recipe);
+    }
+
+    @Override
+    public void addCraftingListener(IGridCraftingListener listener) {
+        craftingListeners.add(listener);
+    }
+
+    @Override
+    public void removeCraftingListener(IGridCraftingListener listener) {
+        craftingListeners.remove(listener);
     }
 }
