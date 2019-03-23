@@ -1,10 +1,13 @@
 package com.raoulvdberge.refinedstorageaddons.item;
 
+import com.raoulvdberge.refinedstorage.api.network.INetwork;
 import com.raoulvdberge.refinedstorage.api.network.grid.GridType;
 import com.raoulvdberge.refinedstorage.api.network.grid.IGridCraftingListener;
 import com.raoulvdberge.refinedstorage.apiimpl.network.node.NetworkNodeGrid;
 import com.raoulvdberge.refinedstorage.tile.grid.WirelessGrid;
 import com.raoulvdberge.refinedstorage.util.StackUtils;
+import com.raoulvdberge.refinedstorageaddons.RSAddons;
+import com.raoulvdberge.refinedstorageaddons.RSAddonsConfig;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
@@ -42,10 +45,10 @@ public class WirelessCraftingGrid extends WirelessGrid {
     private boolean server;
     private Set<IGridCraftingListener> craftingListeners = new HashSet<>();
 
-    public WirelessCraftingGrid(int controllerDimension, ItemStack stack, boolean server) {
-        super(controllerDimension, stack);
+    public WirelessCraftingGrid(ItemStack stack, boolean server) {
+        super(stack);
 
-        this.controllerDimension = controllerDimension;
+        this.controllerDimension = ItemWirelessCraftingGrid.getDimensionId(stack);
         this.server = server;
 
         if (stack.hasTagCompound()) {
@@ -96,6 +99,12 @@ public class WirelessCraftingGrid extends WirelessGrid {
 
     @Override
     public void onCrafted(EntityPlayer player) {
+        INetwork network = getNetwork();
+
+        if (network != null) {
+            network.getNetworkItemHandler().drainEnergy(player, RSAddons.INSTANCE.config.wirelessCraftingGridCraftUsage);
+        }
+
         NetworkNodeGrid.onCrafted(this, DimensionManager.getWorld(controllerDimension), player);
     }
 

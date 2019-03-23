@@ -1,5 +1,8 @@
 # Refined Storage Addons Changelog
 
+### 0.4.4
+- Refined Storage 1.6.13 compatibility (raoulvdberge)
+
 ### 0.4.3
 - Fixed client FPS stuttering when opening a Wireless Crafting Grid (raoulvdberge)
 

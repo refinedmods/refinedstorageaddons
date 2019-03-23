@@ -3,7 +3,7 @@ package com.raoulvdberge.refinedstorageaddons.proxy;
 import com.raoulvdberge.refinedstorage.apiimpl.util.OneSixMigrationHelper;
 import com.raoulvdberge.refinedstorageaddons.RSAddons;
 import com.raoulvdberge.refinedstorageaddons.RSAddonsItems;
-import com.raoulvdberge.refinedstorageaddons.apiimpl.network.grid.wireless.WirelessGridFactoryWirelessCraftingGrid;
+import com.raoulvdberge.refinedstorageaddons.apiimpl.network.grid.WirelessCraftingGridFactory;
 import com.raoulvdberge.refinedstorageaddons.item.WirelessCraftingGrid;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -20,7 +20,7 @@ public class ProxyCommon {
     }
 
     public void init(FMLInitializationEvent e) {
-        WirelessCraftingGrid.ID = RSAddons.RSAPI.getWirelessGridRegistry().add(new WirelessGridFactoryWirelessCraftingGrid());
+        WirelessCraftingGrid.ID = RSAddons.RSAPI.getGridManager().add(new WirelessCraftingGridFactory());
     }
 
     public void postInit(FMLPostInitializationEvent e) {

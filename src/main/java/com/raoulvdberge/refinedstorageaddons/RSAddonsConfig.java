@@ -17,8 +17,6 @@ public final class RSAddonsConfig {
     //region Wireless Crafting Grid
     public boolean wirelessCraftingGridUsesEnergy;
     public int wirelessCraftingGridOpenUsage;
-    public int wirelessCraftingGridExtractUsage;
-    public int wirelessCraftingGridInsertUsage;
     public int wirelessCraftingGridCraftUsage;
     //endregion
 
@@ -49,8 +47,6 @@ public final class RSAddonsConfig {
         //region Wireless Grid
         wirelessCraftingGridUsesEnergy = config.getBoolean("usesEnergy", WIRELESS_CRAFTING_GRID, true, "Whether the Wireless Crafting Grid uses energy");
         wirelessCraftingGridOpenUsage = config.getInt("open", WIRELESS_CRAFTING_GRID, 30, 0, Integer.MAX_VALUE, "The energy used by the Wireless Crafting Grid to open");
-        wirelessCraftingGridInsertUsage = config.getInt("insert", WIRELESS_CRAFTING_GRID, 3, 0, Integer.MAX_VALUE, "The energy used by the Wireless Crafting Grid to insert items");
-        wirelessCraftingGridExtractUsage = config.getInt("extract", WIRELESS_CRAFTING_GRID, 3, 0, Integer.MAX_VALUE, "The energy used by the Wireless Crafting Grid to extract items");
         wirelessCraftingGridCraftUsage = config.getInt("craft", WIRELESS_CRAFTING_GRID, 1, 0, Integer.MAX_VALUE, "The energy used by the Wireless Crafting Grid to craft a single item");
         //endregion
 
