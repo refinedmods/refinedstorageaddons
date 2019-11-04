@@ -1,5 +1,8 @@
 # Refined Storage Addons Changelog
 
+### 0.5
+- Port to Minecraft 1.14 (raoulvdberge)
+
 ### 0.4.4
 - Refined Storage 1.6.13 compatibility (raoulvdberge)
 
