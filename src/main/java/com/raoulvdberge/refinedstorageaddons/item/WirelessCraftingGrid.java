@@ -2,63 +2,67 @@ package com.raoulvdberge.refinedstorageaddons.item;
 
 import com.raoulvdberge.refinedstorage.api.network.INetwork;
 import com.raoulvdberge.refinedstorage.api.network.grid.GridType;
-import com.raoulvdberge.refinedstorage.api.network.grid.IGridCraftingListener;
-import com.raoulvdberge.refinedstorage.apiimpl.network.node.NetworkNodeGrid;
+import com.raoulvdberge.refinedstorage.api.network.grid.ICraftingGridListener;
+import com.raoulvdberge.refinedstorage.api.network.security.Permission;
+import com.raoulvdberge.refinedstorage.api.util.Action;
 import com.raoulvdberge.refinedstorage.tile.grid.WirelessGrid;
 import com.raoulvdberge.refinedstorage.util.StackUtils;
 import com.raoulvdberge.refinedstorageaddons.RSAddons;
-import com.raoulvdberge.refinedstorageaddons.RSAddonsConfig;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.Container;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.CraftResultInventory;
+import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.InventoryCraftResult;
-import net.minecraft.inventory.InventoryCrafting;
+import net.minecraft.inventory.container.Container;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.CraftingManager;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.common.DimensionManager;
+import net.minecraft.item.crafting.ICraftingRecipe;
+import net.minecraft.item.crafting.IRecipeType;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.world.World;
 
+import javax.annotation.Nullable;
 import java.util.HashSet;
 import java.util.Set;
 
 public class WirelessCraftingGrid extends WirelessGrid {
-    public static int ID;
+    @Nullable
+    private final MinecraftServer server;
+    private final World world;
+    private Set<ICraftingGridListener> listeners = new HashSet<>();
 
-    private int controllerDimension;
-    private Container craftingContainer = new Container() {
+    private Container craftingContainer = new Container(null, 0) {
         @Override
-        public boolean canInteractWith(EntityPlayer player) {
+        public boolean canInteractWith(PlayerEntity player) {
             return false;
         }
 
         @Override
         public void onCraftMatrixChanged(IInventory inventory) {
-            if (server) {
+            if (server != null) {
                 onCraftingMatrixChanged();
             }
         }
     };
-    private IRecipe currentRecipe;
-    private InventoryCrafting matrix = new InventoryCrafting(craftingContainer, 3, 3);
-    private InventoryCraftResult result = new InventoryCraftResult();
-    private boolean server;
-    private Set<IGridCraftingListener> craftingListeners = new HashSet<>();
+    private ICraftingRecipe currentRecipe;
+    private CraftingInventory matrix = new CraftingInventory(craftingContainer, 3, 3);
+    private CraftResultInventory result = new CraftResultInventory();
 
-    public WirelessCraftingGrid(ItemStack stack, boolean server) {
-        super(stack);
+    public WirelessCraftingGrid(ItemStack stack, World world, @Nullable MinecraftServer server) {
+        super(stack, server);
 
-        this.controllerDimension = ItemWirelessCraftingGrid.getDimensionId(stack);
         this.server = server;
+        this.world = world;
 
-        if (stack.hasTagCompound()) {
-            StackUtils.readItems(matrix, 1, stack.getTagCompound());
+        if (stack.hasTag()) {
+            StackUtils.readItems(matrix, 1, stack.getTag());
         }
     }
 
     @Override
-    public String getGuiTitle() {
-        return "gui.refinedstorage:crafting_grid";
+    public ITextComponent getTitle() {
+        return new TranslationTextComponent("gui.refinedstorage.crafting_grid");
     }
 
     @Override
@@ -67,19 +71,19 @@ public class WirelessCraftingGrid extends WirelessGrid {
     }
 
     @Override
-    public InventoryCrafting getCraftingMatrix() {
+    public CraftingInventory getCraftingMatrix() {
         return matrix;
     }
 
     @Override
-    public InventoryCraftResult getCraftingResult() {
+    public CraftResultInventory getCraftingResult() {
         return result;
     }
 
     @Override
     public void onCraftingMatrixChanged() {
-        if (currentRecipe == null || !currentRecipe.matches(matrix, DimensionManager.getWorld(controllerDimension))) {
-            currentRecipe = CraftingManager.findMatchingRecipe(matrix, DimensionManager.getWorld(controllerDimension));
+        if (currentRecipe == null || !currentRecipe.matches(matrix, world)) {
+            currentRecipe = world.getRecipeManager().getRecipe(IRecipeType.CRAFTING, matrix, world).orElse(null);
         }
 
         if (currentRecipe == null) {
@@ -88,43 +92,62 @@ public class WirelessCraftingGrid extends WirelessGrid {
             result.setInventorySlotContents(0, currentRecipe.getCraftingResult(matrix));
         }
 
-        craftingListeners.forEach(IGridCraftingListener::onCraftingMatrixChanged);
+        listeners.forEach(ICraftingGridListener::onCraftingMatrixChanged);
 
-        if (!getStack().hasTagCompound()) {
-            getStack().setTagCompound(new NBTTagCompound());
+        if (!getStack().hasTag()) {
+            getStack().setTag(new CompoundNBT());
         }
 
-        StackUtils.writeItems(matrix, 1, getStack().getTagCompound());
+        StackUtils.writeItems(matrix, 1, getStack().getTag());
     }
 
     @Override
-    public void onCrafted(EntityPlayer player) {
+    public void onCrafted(PlayerEntity player) {
+        RSAddons.RSAPI.getCraftingGridBehavior().onCrafted(this, currentRecipe, player);
+
         INetwork network = getNetwork();
 
         if (network != null) {
-            network.getNetworkItemHandler().drainEnergy(player, RSAddons.INSTANCE.config.wirelessCraftingGridCraftUsage);
+            network.getNetworkItemManager().drainEnergy(player, RSAddons.SERVER_CONFIG.getWirelessCraftingGrid().getCraftUsage());
         }
-
-        NetworkNodeGrid.onCrafted(this, DimensionManager.getWorld(controllerDimension), player);
     }
 
     @Override
-    public void onCraftedShift(EntityPlayer player) {
-        NetworkNodeGrid.onCraftedShift(this, player);
+    public void onClear(PlayerEntity player) {
+        INetwork network = getNetwork();
+
+        if (network != null && network.getSecurityManager().hasPermission(Permission.INSERT, player)) {
+            for (int i = 0; i < matrix.getSizeInventory(); ++i) {
+                ItemStack slot = matrix.getStackInSlot(i);
+
+                if (!slot.isEmpty()) {
+                    matrix.setInventorySlotContents(i, network.insertItem(slot, slot.getCount(), Action.PERFORM));
+
+                    network.getItemStorageTracker().changed(player, slot.copy());
+                }
+            }
+
+            network.getNetworkItemManager().drainEnergy(player, RSAddons.SERVER_CONFIG.getWirelessCraftingGrid().getClearUsage());
+        }
     }
 
     @Override
-    public void onRecipeTransfer(EntityPlayer player, ItemStack[][] recipe) {
-        NetworkNodeGrid.onRecipeTransfer(this, player, recipe);
+    public void onCraftedShift(PlayerEntity player) {
+        RSAddons.RSAPI.getCraftingGridBehavior().onCraftedShift(this, player);
     }
 
     @Override
-    public void addCraftingListener(IGridCraftingListener listener) {
-        craftingListeners.add(listener);
+    public void onRecipeTransfer(PlayerEntity player, ItemStack[][] recipe) {
+        RSAddons.RSAPI.getCraftingGridBehavior().onRecipeTransfer(this, player, recipe);
     }
 
     @Override
-    public void removeCraftingListener(IGridCraftingListener listener) {
-        craftingListeners.remove(listener);
+    public void addCraftingListener(ICraftingGridListener listener) {
+        listeners.add(listener);
+    }
+
+    @Override
+    public void removeCraftingListener(ICraftingGridListener listener) {
+        listeners.remove(listener);
     }
 }

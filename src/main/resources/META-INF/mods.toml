@@ -9,3 +9,9 @@ authors="Refined Storage Addons contributors"
 description='''
 An addon mod for Refined Storage
 '''
+[[dependencies.refinedstorageaddons]]
+    modId="refinedstorage"
+    versionRange="[1.7.1,)"
+    mandatory=false
+    ordering="AFTER"
+    side="BOTH"

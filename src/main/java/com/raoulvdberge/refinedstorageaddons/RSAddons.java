@@ -2,57 +2,35 @@ package com.raoulvdberge.refinedstorageaddons;
 
 import com.raoulvdberge.refinedstorage.api.IRSAPI;
 import com.raoulvdberge.refinedstorage.api.RSAPIInject;
-import com.raoulvdberge.refinedstorageaddons.proxy.ProxyCommon;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.ItemStack;
+import com.raoulvdberge.refinedstorageaddons.config.ServerConfig;
+import com.raoulvdberge.refinedstorageaddons.item.group.MainItemGroup;
+import com.raoulvdberge.refinedstorageaddons.setup.ClientSetup;
+import com.raoulvdberge.refinedstorageaddons.setup.CommonSetup;
+import net.minecraft.item.Item;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.fml.DistExecutor;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.EventHandler;
-import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.network.NetworkRegistry;
-import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
+import net.minecraftforge.fml.config.ModConfig;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
-@Mod(modid = RSAddons.ID, version = RSAddons.VERSION, dependencies = RSAddons.DEPENDENCIES, acceptedMinecraftVersions = "[1.12,1.13)", guiFactory = RSAddons.GUI_FACTORY)
+@Mod(RSAddons.ID)
 public final class RSAddons {
     @RSAPIInject
     public static IRSAPI RSAPI;
 
     public static final String ID = "refinedstorageaddons";
-    public static final String VERSION = "@version@";
-    public static final String DEPENDENCIES = "required-after:refinedstorage@[1.6.9,);";
-    public static final String GUI_FACTORY = "com.raoulvdberge.refinedstorageaddons.gui.config.ModGuiFactory";
+    public static final ServerConfig SERVER_CONFIG = new ServerConfig();
+    public static final MainItemGroup MAIN_GROUP = new MainItemGroup();
 
-    @Mod.Instance
-    public static RSAddons INSTANCE;
+    public RSAddons() {
+        DistExecutor.runWhenOn(Dist.CLIENT, () -> ClientSetup::new);
 
-    public RSAddonsConfig config;
-    public final SimpleNetworkWrapper network = NetworkRegistry.INSTANCE.newSimpleChannel(ID);
-    public final CreativeTabs tab = new CreativeTabs(RSAddons.ID) {
-        @Override
-        public ItemStack getTabIconItem() {
-            return new ItemStack(RSAddonsItems.WIRELESS_CRAFTING_GRID);
-        }
-    };
+        ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, SERVER_CONFIG.getSpec());
 
-    @SidedProxy(clientSide = "com.raoulvdberge.refinedstorageaddons.proxy.ProxyClient", serverSide = "com.raoulvdberge.refinedstorageaddons.proxy.ProxyCommon")
-    public static ProxyCommon PROXY;
+        CommonSetup commonSetup = new CommonSetup();
 
-    @EventHandler
-    public void preInit(FMLPreInitializationEvent e) {
-        config = new RSAddonsConfig(e.getSuggestedConfigurationFile());
-
-        PROXY.preInit(e);
-    }
-
-    @EventHandler
-    public void init(FMLInitializationEvent e) {
-        PROXY.init(e);
-    }
-
-    @EventHandler
-    public void postInit(FMLPostInitializationEvent e) {
-        PROXY.postInit(e);
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(commonSetup::onCommonSetup);
+        FMLJavaModLoadingContext.get().getModEventBus().addGenericListener(Item.class, commonSetup::onRegisterItems);
     }
 }
