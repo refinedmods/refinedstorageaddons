@@ -33,7 +33,7 @@ public class WirelessCraftingGridItem extends NetworkItem {
 
     @Override
     @Nonnull
-    public INetworkItem provide(INetworkItemManager handler, PlayerEntity player, ItemStack stack) {
-        return new WirelessCraftingGridNetworkItem(handler, player, stack);
+    public INetworkItem provide(INetworkItemManager handler, PlayerEntity player, ItemStack stack, int slotId) {
+        return new WirelessCraftingGridNetworkItem(handler, player, stack, slotId);
     }
 }

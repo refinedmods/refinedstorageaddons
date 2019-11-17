@@ -49,8 +49,8 @@ public class WirelessCraftingGrid extends WirelessGrid {
     private CraftingInventory matrix = new CraftingInventory(craftingContainer, 3, 3);
     private CraftResultInventory result = new CraftResultInventory();
 
-    public WirelessCraftingGrid(ItemStack stack, World world, @Nullable MinecraftServer server) {
-        super(stack, server);
+    public WirelessCraftingGrid(ItemStack stack, World world, @Nullable MinecraftServer server, int slotId) {
+        super(stack, server, slotId);
 
         this.server = server;
         this.world = world;
