@@ -12,6 +12,6 @@ An addon mod for Refined Storage
 [[dependencies.refinedstorageaddons]]
     modId="refinedstorage"
     versionRange="[1.7.1,)"
-    mandatory=false
+    mandatory=true
     ordering="AFTER"
     side="BOTH"
