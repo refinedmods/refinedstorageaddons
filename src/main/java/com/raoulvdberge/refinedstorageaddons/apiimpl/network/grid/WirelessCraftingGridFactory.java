@@ -15,8 +15,8 @@ import javax.annotation.Nullable;
 public class WirelessCraftingGridFactory implements IGridFactory {
     @Nullable
     @Override
-    public IGrid createFromStack(EntityPlayer player, ItemStack stack) {
-        return new WirelessCraftingGrid(stack, !player.getEntityWorld().isRemote);
+    public IGrid createFromStack(EntityPlayer player, ItemStack stack, int slotId) {
+        return new WirelessCraftingGrid(stack, !player.getEntityWorld().isRemote, slotId);
     }
 
     @Nullable
