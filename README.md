@@ -1,4 +1,4 @@
-# Refined Storage Addons [![Build Status](https://jenkins.raoulvdberge.com/buildStatus/icon?job=refinedstorageaddons-mc1.14)](https://jenkins.raoulvdberge.com/job/refinedstorageaddons-mc1.14/) [![CurseForge](http://cf.way2muchnoise.eu/full_272302_downloads.svg)](http://minecraft.curseforge.com/projects/refined-storage-addons)
+# Refined Storage Addons [![Build Status](https://jenkins.raoulvdberge.com/buildStatus/icon?job=refinedstorageaddons-mc1.15)](https://jenkins.raoulvdberge.com/job/refinedstorageaddons-mc1.15/) [![CurseForge](http://cf.way2muchnoise.eu/full_272302_downloads.svg)](http://minecraft.curseforge.com/projects/refined-storage-addons)
 
 This is an addon mod for Refined Storage, from the original Refined Storage author.
 

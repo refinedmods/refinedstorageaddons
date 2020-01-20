@@ -19,7 +19,7 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = '0.5'
+version = '0.6'
 def env = System.getenv()
 if (env.BUILD_NUMBER) {
     version = version + "+" + "${env.BUILD_NUMBER}"
@@ -84,9 +84,9 @@ processResources {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.14.4-28.1.70'
-    compileOnly fg.deobf("com.raoulvdberge:refinedstorage:1.7.1+21")
-    runtimeOnly fg.deobf("com.raoulvdberge:refinedstorage:1.7.1+21")
+    minecraft 'net.minecraftforge:forge:1.15.1-30.0.41'
+    compileOnly fg.deobf("com.raoulvdberge:refinedstorage:1.8+2")
+    runtimeOnly fg.deobf("com.raoulvdberge:refinedstorage:1.8+2")
 }
 
 jar {
