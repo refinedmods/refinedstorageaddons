@@ -20,7 +20,11 @@ public class WirelessCraftingGridItem extends NetworkItem {
     private final Type type;
 
     public WirelessCraftingGridItem(Type type) {
-        super(new Item.Properties().group(RSAddons.MAIN_GROUP).maxStackSize(1), type == Type.CREATIVE, () -> RSAddons.SERVER_CONFIG.getWirelessCraftingGrid().getCapacity());
+        super(
+            new Item.Properties().group(RSAddons.MAIN_GROUP).maxStackSize(1),
+            type == Type.CREATIVE,
+            () -> RSAddons.SERVER_CONFIG.getWirelessCraftingGrid().getCapacity()
+        );
 
         this.type = type;
 
