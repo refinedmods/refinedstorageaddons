@@ -1,5 +1,8 @@
 # Refined Storage Addons Changelog
 
+### 0.6.1
+- Port to Minecraft 1.15.2 (raoulvdberge)
+
 ### 0.6
 - Port to Minecraft 1.15 (raoulvdberge)
 

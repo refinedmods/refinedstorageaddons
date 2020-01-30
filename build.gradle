@@ -19,7 +19,7 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = '0.6'
+version = '0.6.1'
 def env = System.getenv()
 if (env.BUILD_NUMBER) {
     version = version + "+" + "${env.BUILD_NUMBER}"
@@ -30,7 +30,7 @@ archivesBaseName = 'refinedstorageaddons'
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
 
 minecraft {
-    mappings channel: 'snapshot', version: '20190719-1.14.3'
+    mappings channel: 'snapshot', version: '20200124-1.15.1'
 
     runs {
         client {
@@ -84,9 +84,9 @@ processResources {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.15.1-30.0.41'
-    compileOnly fg.deobf("com.raoulvdberge:refinedstorage:1.8+2")
-    runtimeOnly fg.deobf("com.raoulvdberge:refinedstorage:1.8+2")
+    minecraft 'net.minecraftforge:forge:1.15.2-31.0.14'
+    compileOnly fg.deobf("com.raoulvdberge:refinedstorage:1.8.1+11")
+    runtimeOnly fg.deobf("com.raoulvdberge:refinedstorage:1.8.1+11")
 }
 
 jar {
