@@ -1,5 +1,8 @@
 # Refined Storage Addons Changelog
 
+### 0.6.2
+- Added zh_tw translation (ForFunPenguin)
+
 ### 0.6.1
 - Port to Minecraft 1.15.2 (raoulvdberge)
 
