@@ -9,6 +9,9 @@
 ### 0.5
 - Port to Minecraft 1.14 (raoulvdberge)
 
+### 0.4.5
+- Refined Storage 1.6.16 compatibility (raoulvdberge)
+
 ### 0.4.4
 - Refined Storage 1.6.13 compatibility (raoulvdberge)
 
