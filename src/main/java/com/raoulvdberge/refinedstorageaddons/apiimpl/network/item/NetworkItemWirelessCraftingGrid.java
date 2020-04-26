@@ -19,13 +19,15 @@ public class NetworkItemWirelessCraftingGrid extends NetworkItemWirelessGrid {
     private INetworkItemHandler handler;
     private ItemStack stack;
     private EntityPlayer player;
+    private int slotId;
 
-    public NetworkItemWirelessCraftingGrid(INetworkItemHandler handler, EntityPlayer player, ItemStack stack) {
-        super(handler, player, stack);
+    public NetworkItemWirelessCraftingGrid(INetworkItemHandler handler, EntityPlayer player, ItemStack stack, int slotId) {
+        super(handler, player, stack, slotId);
 
         this.handler = handler;
         this.player = player;
         this.stack = stack;
+        this.slotId = slotId;
     }
 
     @Override
@@ -40,7 +42,7 @@ public class NetworkItemWirelessCraftingGrid extends NetworkItemWirelessGrid {
             return false;
         }
 
-        API.instance().getGridManager().openGrid(WirelessCraftingGrid.ID, (EntityPlayerMP) player, stack);
+        API.instance().getGridManager().openGrid(WirelessCraftingGrid.ID, (EntityPlayerMP) player, stack, slotId);
 
         drainEnergy(RSAddons.INSTANCE.config.wirelessCraftingGridOpenUsage);
 

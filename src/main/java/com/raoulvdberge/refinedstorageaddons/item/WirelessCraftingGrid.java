@@ -45,8 +45,8 @@ public class WirelessCraftingGrid extends WirelessGrid {
     private boolean server;
     private Set<IGridCraftingListener> craftingListeners = new HashSet<>();
 
-    public WirelessCraftingGrid(ItemStack stack, boolean server) {
-        super(stack);
+    public WirelessCraftingGrid(ItemStack stack, boolean server, int slotId) {
+        super(stack, slotId);
 
         this.controllerDimension = ItemWirelessCraftingGrid.getDimensionId(stack);
         this.server = server;

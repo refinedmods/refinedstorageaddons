@@ -21,7 +21,7 @@ public final class RSAddons {
 
     public static final String ID = "refinedstorageaddons";
     public static final String VERSION = "@version@";
-    public static final String DEPENDENCIES = "required-after:refinedstorage@[1.6.9,);";
+    public static final String DEPENDENCIES = "required-after:refinedstorage@[1.6.16,);";
     public static final String GUI_FACTORY = "com.raoulvdberge.refinedstorageaddons.gui.config.ModGuiFactory";
 
     @Mod.Instance
