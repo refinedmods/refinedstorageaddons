@@ -1,11 +1,11 @@
 modLoader="javafml"
 loaderVersion="[31,)"
-issueTrackerURL="https://github.com/raoulvdberge/refinedstorageaddons"
+issueTrackerURL="https://github.com/refinedmods/refinedstorageaddons"
 [[mods]]
 modId="refinedstorageaddons"
 version="${version}"
 displayName="Refined Storage Addons"
-authors="Refined Storage Addons contributors"
+authors="Refined Mods"
 description='''
 An addon mod for Refined Storage
 '''
