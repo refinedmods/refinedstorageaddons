@@ -1,4 +1,4 @@
-package com.raoulvdberge.refinedstorageaddons;
+package com.refinedmods.refinedstorageaddons;
 
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.client.util.InputMappings;

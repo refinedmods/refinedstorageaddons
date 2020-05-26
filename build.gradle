@@ -11,7 +11,7 @@ buildscript {
 
 repositories {
     maven {
-        url "https://repo.raoulvdberge.com"
+        url "https://repo.refinedmods.com"
     }
 }
 
@@ -24,7 +24,7 @@ def env = System.getenv()
 if (env.BUILD_NUMBER) {
     version = version + "+" + "${env.BUILD_NUMBER}"
 }
-group = 'com.raoulvdberge'
+group = 'com.refinedmods'
 archivesBaseName = 'refinedstorageaddons'
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
@@ -85,19 +85,19 @@ processResources {
 
 dependencies {
     minecraft 'net.minecraftforge:forge:1.15.2-31.0.14'
-    compileOnly fg.deobf("com.raoulvdberge:refinedstorage:1.8.1+11")
-    runtimeOnly fg.deobf("com.raoulvdberge:refinedstorage:1.8.1+11")
+    compileOnly fg.deobf("com.refinedmods:refinedstorage:1.8.5+37")
+    runtimeOnly fg.deobf("com.refinedmods:refinedstorage:1.8.5+37")
 }
 
 jar {
     manifest {
         attributes([
                 "Specification-Title"     : "refinedstorageaddons",
-                "Specification-Vendor"    : "raoulvdberge",
+                "Specification-Vendor"    : "refinedmods",
                 "Specification-Version"   : "1",
                 "Implementation-Title"    : project.name,
                 "Implementation-Version"  : "${version}",
-                "Implementation-Vendor"   : "raoulvdberge",
+                "Implementation-Vendor"   : "refinedmods",
                 "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
     }

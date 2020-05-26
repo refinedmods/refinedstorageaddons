@@ -1,4 +1,4 @@
-package com.raoulvdberge.refinedstorageaddons.config;
+package com.refinedmods.refinedstorageaddons.config;
 
 import net.minecraftforge.common.ForgeConfigSpec;
 

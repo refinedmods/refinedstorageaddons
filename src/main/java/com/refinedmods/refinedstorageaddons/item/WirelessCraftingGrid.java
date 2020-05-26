@@ -1,13 +1,13 @@
-package com.raoulvdberge.refinedstorageaddons.item;
+package com.refinedmods.refinedstorageaddons.item;
 
-import com.raoulvdberge.refinedstorage.api.network.INetwork;
-import com.raoulvdberge.refinedstorage.api.network.grid.GridType;
-import com.raoulvdberge.refinedstorage.api.network.grid.ICraftingGridListener;
-import com.raoulvdberge.refinedstorage.api.network.security.Permission;
-import com.raoulvdberge.refinedstorage.api.util.Action;
-import com.raoulvdberge.refinedstorage.tile.grid.WirelessGrid;
-import com.raoulvdberge.refinedstorage.util.StackUtils;
-import com.raoulvdberge.refinedstorageaddons.RSAddons;
+import com.refinedmods.refinedstorage.api.network.INetwork;
+import com.refinedmods.refinedstorage.api.network.grid.GridType;
+import com.refinedmods.refinedstorage.api.network.grid.ICraftingGridListener;
+import com.refinedmods.refinedstorage.api.network.security.Permission;
+import com.refinedmods.refinedstorage.api.util.Action;
+import com.refinedmods.refinedstorage.tile.grid.WirelessGrid;
+import com.refinedmods.refinedstorage.util.StackUtils;
+import com.refinedmods.refinedstorageaddons.RSAddons;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.CraftResultInventory;
 import net.minecraft.inventory.CraftingInventory;

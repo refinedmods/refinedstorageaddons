@@ -1,10 +1,10 @@
-package com.raoulvdberge.refinedstorageaddons.apiimpl.network.grid;
+package com.refinedmods.refinedstorageaddons.apiimpl.network.grid;
 
-import com.raoulvdberge.refinedstorage.api.network.grid.GridFactoryType;
-import com.raoulvdberge.refinedstorage.api.network.grid.IGrid;
-import com.raoulvdberge.refinedstorage.api.network.grid.IGridFactory;
-import com.raoulvdberge.refinedstorageaddons.RSAddons;
-import com.raoulvdberge.refinedstorageaddons.item.WirelessCraftingGrid;
+import com.refinedmods.refinedstorage.api.network.grid.GridFactoryType;
+import com.refinedmods.refinedstorage.api.network.grid.IGrid;
+import com.refinedmods.refinedstorage.api.network.grid.IGridFactory;
+import com.refinedmods.refinedstorageaddons.RSAddons;
+import com.refinedmods.refinedstorageaddons.item.WirelessCraftingGrid;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;

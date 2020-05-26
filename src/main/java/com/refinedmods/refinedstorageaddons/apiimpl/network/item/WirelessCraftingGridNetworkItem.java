@@ -1,14 +1,14 @@
-package com.raoulvdberge.refinedstorageaddons.apiimpl.network.item;
+package com.refinedmods.refinedstorageaddons.apiimpl.network.item;
 
-import com.raoulvdberge.refinedstorage.api.network.INetwork;
-import com.raoulvdberge.refinedstorage.api.network.item.INetworkItem;
-import com.raoulvdberge.refinedstorage.api.network.item.INetworkItemManager;
-import com.raoulvdberge.refinedstorage.api.network.security.Permission;
-import com.raoulvdberge.refinedstorage.apiimpl.API;
-import com.raoulvdberge.refinedstorage.util.WorldUtils;
-import com.raoulvdberge.refinedstorageaddons.RSAddons;
-import com.raoulvdberge.refinedstorageaddons.apiimpl.network.grid.WirelessCraftingGridGridFactory;
-import com.raoulvdberge.refinedstorageaddons.item.WirelessCraftingGridItem;
+import com.refinedmods.refinedstorage.api.network.INetwork;
+import com.refinedmods.refinedstorage.api.network.item.INetworkItem;
+import com.refinedmods.refinedstorage.api.network.item.INetworkItemManager;
+import com.refinedmods.refinedstorage.api.network.security.Permission;
+import com.refinedmods.refinedstorage.apiimpl.API;
+import com.refinedmods.refinedstorage.util.WorldUtils;
+import com.refinedmods.refinedstorageaddons.RSAddons;
+import com.refinedmods.refinedstorageaddons.apiimpl.network.grid.WirelessCraftingGridGridFactory;
+import com.refinedmods.refinedstorageaddons.item.WirelessCraftingGridItem;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;

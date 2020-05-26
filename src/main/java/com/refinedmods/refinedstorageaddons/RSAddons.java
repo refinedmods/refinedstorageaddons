@@ -1,11 +1,11 @@
-package com.raoulvdberge.refinedstorageaddons;
+package com.refinedmods.refinedstorageaddons;
 
-import com.raoulvdberge.refinedstorage.api.IRSAPI;
-import com.raoulvdberge.refinedstorage.api.RSAPIInject;
-import com.raoulvdberge.refinedstorageaddons.config.ServerConfig;
-import com.raoulvdberge.refinedstorageaddons.item.group.MainItemGroup;
-import com.raoulvdberge.refinedstorageaddons.setup.ClientSetup;
-import com.raoulvdberge.refinedstorageaddons.setup.CommonSetup;
+import com.refinedmods.refinedstorage.api.IRSAPI;
+import com.refinedmods.refinedstorage.api.RSAPIInject;
+import com.refinedmods.refinedstorageaddons.config.ServerConfig;
+import com.refinedmods.refinedstorageaddons.item.group.MainItemGroup;
+import com.refinedmods.refinedstorageaddons.setup.ClientSetup;
+import com.refinedmods.refinedstorageaddons.setup.CommonSetup;
 import net.minecraft.item.Item;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.fml.DistExecutor;

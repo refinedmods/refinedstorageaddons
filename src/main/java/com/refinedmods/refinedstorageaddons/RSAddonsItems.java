@@ -1,6 +1,6 @@
-package com.raoulvdberge.refinedstorageaddons;
+package com.refinedmods.refinedstorageaddons;
 
-import com.raoulvdberge.refinedstorageaddons.item.WirelessCraftingGridItem;
+import com.refinedmods.refinedstorageaddons.item.WirelessCraftingGridItem;
 import net.minecraftforge.registries.ObjectHolder;
 
 public final class RSAddonsItems {

@@ -1,8 +1,8 @@
-package com.raoulvdberge.refinedstorageaddons.setup;
+package com.refinedmods.refinedstorageaddons.setup;
 
-import com.raoulvdberge.refinedstorageaddons.RSAddons;
-import com.raoulvdberge.refinedstorageaddons.apiimpl.network.grid.WirelessCraftingGridGridFactory;
-import com.raoulvdberge.refinedstorageaddons.item.WirelessCraftingGridItem;
+import com.refinedmods.refinedstorageaddons.RSAddons;
+import com.refinedmods.refinedstorageaddons.apiimpl.network.grid.WirelessCraftingGridGridFactory;
+import com.refinedmods.refinedstorageaddons.item.WirelessCraftingGridItem;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;

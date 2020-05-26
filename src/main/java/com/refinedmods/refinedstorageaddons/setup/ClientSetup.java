@@ -1,8 +1,8 @@
-package com.raoulvdberge.refinedstorageaddons.setup;
+package com.refinedmods.refinedstorageaddons.setup;
 
-import com.raoulvdberge.refinedstorage.screen.KeyInputListener;
-import com.raoulvdberge.refinedstorageaddons.RSAddonsItems;
-import com.raoulvdberge.refinedstorageaddons.RSAddonsKeyBindings;
+import com.refinedmods.refinedstorage.screen.KeyInputListener;
+import com.refinedmods.refinedstorageaddons.RSAddonsItems;
+import com.refinedmods.refinedstorageaddons.RSAddonsKeyBindings;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraftforge.client.event.InputEvent;

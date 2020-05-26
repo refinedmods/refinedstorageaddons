@@ -1,7 +1,7 @@
-package com.raoulvdberge.refinedstorageaddons.item.group;
+package com.refinedmods.refinedstorageaddons.item.group;
 
-import com.raoulvdberge.refinedstorageaddons.RSAddons;
-import com.raoulvdberge.refinedstorageaddons.RSAddonsItems;
+import com.refinedmods.refinedstorageaddons.RSAddons;
+import com.refinedmods.refinedstorageaddons.RSAddonsItems;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 
