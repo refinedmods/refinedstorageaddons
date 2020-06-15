@@ -5,6 +5,8 @@ issueTrackerURL="https://github.com/refinedmods/refinedstorageaddons"
 modId="refinedstorageaddons"
 version="${version}"
 displayName="Refined Storage Addons"
+updateJSONURL="https://refinedmods.com/refined-storage-addons/update.json"
+displayURL="https://refinedmods.com/refined-storage-addons"
 authors="Refined Mods"
 description='''
 An addon mod for Refined Storage
