@@ -2,6 +2,7 @@
 
 ### 0.6.2
 - Added zh_tw translation (ForFunPenguin)
+- Refined Storage 1.8.5 compatibility (raoulvdberge)
 
 ### 0.6.1
 - Port to Minecraft 1.15.2 (raoulvdberge)
