@@ -2,4 +2,4 @@
 
 This is an addon mod for Refined Storage.
 
-This mod will have all features that I think belong in an addon mod and not in the core Refined Storage mod.
+This mod will have all features that belong in an addon mod and not in the core Refined Storage mod.
