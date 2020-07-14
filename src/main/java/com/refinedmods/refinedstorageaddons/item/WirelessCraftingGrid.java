@@ -5,6 +5,7 @@ import com.refinedmods.refinedstorage.api.network.grid.GridType;
 import com.refinedmods.refinedstorage.api.network.grid.ICraftingGridListener;
 import com.refinedmods.refinedstorage.api.network.security.Permission;
 import com.refinedmods.refinedstorage.api.util.Action;
+import com.refinedmods.refinedstorage.api.util.IStackList;
 import com.refinedmods.refinedstorage.tile.grid.WirelessGrid;
 import com.refinedmods.refinedstorage.util.StackUtils;
 import com.refinedmods.refinedstorageaddons.RSAddons;
@@ -102,8 +103,8 @@ public class WirelessCraftingGrid extends WirelessGrid {
     }
 
     @Override
-    public void onCrafted(PlayerEntity player) {
-        RSAddons.RSAPI.getCraftingGridBehavior().onCrafted(this, currentRecipe, player);
+    public void onCrafted(PlayerEntity player, @Nullable IStackList<ItemStack> availableItems, @Nullable IStackList<ItemStack> usedItems) {
+        RSAddons.RSAPI.getCraftingGridBehavior().onCrafted(this, currentRecipe, player, availableItems, usedItems);
 
         INetwork network = getNetwork();
 
