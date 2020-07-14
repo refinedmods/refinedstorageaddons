@@ -1,5 +1,8 @@
 # Refined Storage Addons Changelog
 
+### 0.6.3
+- Fixed duplication bug and weird behavior in the Wireless Crafting Grid matrix (Darkere)
+
 ### 0.6.2
 - Added zh_tw translation (ForFunPenguin)
 - Refined Storage 1.8.5 compatibility (raoulvdberge)
