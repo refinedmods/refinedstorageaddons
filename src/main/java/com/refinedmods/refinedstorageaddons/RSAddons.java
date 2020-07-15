@@ -24,7 +24,7 @@ public final class RSAddons {
     public static final MainItemGroup MAIN_GROUP = new MainItemGroup();
 
     public RSAddons() {
-        DistExecutor.runWhenOn(Dist.CLIENT, () -> ClientSetup::new);
+        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ClientSetup::new);
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, SERVER_CONFIG.getSpec());
 

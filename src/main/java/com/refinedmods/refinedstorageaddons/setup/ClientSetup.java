@@ -1,10 +1,14 @@
 package com.refinedmods.refinedstorageaddons.setup;
 
+import com.refinedmods.refinedstorage.item.property.NetworkItemPropertyGetter;
 import com.refinedmods.refinedstorage.screen.KeyInputListener;
 import com.refinedmods.refinedstorageaddons.RSAddonsItems;
 import com.refinedmods.refinedstorageaddons.RSAddonsKeyBindings;
 import net.minecraft.client.Minecraft;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.item.ItemModelsProperties;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -22,6 +26,9 @@ public class ClientSetup {
         MinecraftForge.EVENT_BUS.register(this);
 
         ClientRegistry.registerKeyBinding(RSAddonsKeyBindings.OPEN_WIRELESS_CRAFTING_GRID);
+
+        ItemModelsProperties.func_239418_a_(RSAddonsItems.WIRELESS_CRAFTING_GRID, new ResourceLocation("connected"), new NetworkItemPropertyGetter());
+        ItemModelsProperties.func_239418_a_(RSAddonsItems.CREATIVE_WIRELESS_CRAFTING_GRID, new ResourceLocation("connected"), new NetworkItemPropertyGetter());
     }
 
     @SubscribeEvent
@@ -30,7 +37,9 @@ public class ClientSetup {
             PlayerInventory inv = Minecraft.getInstance().player.inventory;
 
             if (RSAddonsKeyBindings.OPEN_WIRELESS_CRAFTING_GRID.isKeyDown()) {
-                KeyInputListener.findAndOpen(inv, (error) -> Minecraft.getInstance().player.sendMessage(error), RSAddonsItems.WIRELESS_CRAFTING_GRID, RSAddonsItems.CREATIVE_WIRELESS_CRAFTING_GRID);
+                PlayerEntity player = Minecraft.getInstance().player;
+
+                KeyInputListener.findAndOpen(inv, (error) -> player.sendMessage(error, player.getUniqueID()), RSAddonsItems.WIRELESS_CRAFTING_GRID, RSAddonsItems.CREATIVE_WIRELESS_CRAFTING_GRID);
             }
         }
     }

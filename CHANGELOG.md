@@ -1,5 +1,8 @@
 # Refined Storage Addons Changelog
 
+### 0.7
+- Port to Minecraft 1.16 (raoulvdberge)
+
 ### 0.6.3
 - Fixed duplication bug and weird behavior in the Wireless Crafting Grid matrix (Darkere)
 
