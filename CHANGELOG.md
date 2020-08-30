@@ -2,6 +2,8 @@
 
 ### 0.7.1
 - Added Japanese translation (a2y4)
+- Updated Chinese translation (1478599553)
+- Updated Russian translation (KhottyManatee55)
 
 ### 0.7
 - Port to Minecraft 1.16 (raoulvdberge)
