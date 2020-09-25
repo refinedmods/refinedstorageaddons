@@ -1,20 +1,20 @@
-modLoader="javafml"
-loaderVersion="[33,)"
-issueTrackerURL="https://github.com/refinedmods/refinedstorageaddons"
-license="MIT"
+modLoader = "javafml"
+loaderVersion = "[34,)"
+issueTrackerURL = "https://github.com/refinedmods/refinedstorageaddons"
+license = "MIT"
 [[mods]]
-modId="refinedstorageaddons"
-version="${version}"
-displayName="Refined Storage Addons"
-updateJSONURL="https://refinedmods.com/refined-storage-addons/update.json"
-displayURL="https://refinedmods.com/refined-storage-addons"
-authors="Refined Mods"
-description='''
+modId = "refinedstorageaddons"
+version = "${version}"
+displayName = "Refined Storage Addons"
+updateJSONURL = "https://refinedmods.com/refined-storage-addons/update.json"
+displayURL = "https://refinedmods.com/refined-storage-addons"
+authors = "Refined Mods"
+description = '''
 An addon mod for Refined Storage
 '''
 [[dependencies.refinedstorageaddons]]
-    modId="refinedstorage"
-    versionRange="[1.9.4,)"
-    mandatory=true
-    ordering="AFTER"
-    side="BOTH"
+modId = "refinedstorage"
+versionRange = "[1.9.6,)"
+mandatory = true
+ordering = "AFTER"
+side = "BOTH"

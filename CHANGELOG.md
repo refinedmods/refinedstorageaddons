@@ -1,5 +1,8 @@
 # Refined Storage Addons Changelog
 
+### 0.7.2
+- Port to Minecraft 1.16.3 (raoulvdberge)
+
 ### 0.7.1
 - Port to Minecraft 1.16.2 (raoulvdberge)
 - Added Japanese translation (a2y4)

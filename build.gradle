@@ -84,9 +84,9 @@ processResources {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.16.2-33.0.20'
-    compileOnly fg.deobf("com.refinedmods:refinedstorage:1.9.4+56")
-    runtimeOnly fg.deobf("com.refinedmods:refinedstorage:1.9.4+56")
+    minecraft 'net.minecraftforge:forge:1.16.3-34.1.0'
+    compileOnly fg.deobf("com.refinedmods:refinedstorage:1.9.6+80")
+    runtimeOnly fg.deobf("com.refinedmods:refinedstorage:1.9.6+80")
 }
 
 jar {
