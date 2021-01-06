@@ -151,4 +151,14 @@ public class WirelessCraftingGrid extends WirelessGrid {
     public void removeCraftingListener(ICraftingGridListener listener) {
         listeners.remove(listener);
     }
+
+    @Override
+    public void onClosed(PlayerEntity player) {
+        if (!getStack().hasTag()) {
+            getStack().setTag(new CompoundNBT());
+        }
+
+        StackUtils.writeItems(matrix, 1, getStack().getTag());
+        super.onClosed(player);
+    }
 }
