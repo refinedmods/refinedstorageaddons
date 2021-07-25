@@ -34,12 +34,8 @@ public class ClientSetup {
     @SubscribeEvent
     public void onKeyInput(InputEvent.KeyInputEvent e) {
         if (Minecraft.getInstance().player != null) {
-            PlayerInventory inv = Minecraft.getInstance().player.inventory;
-
             if (RSAddonsKeyBindings.OPEN_WIRELESS_CRAFTING_GRID.isKeyDown()) {
-                PlayerEntity player = Minecraft.getInstance().player;
-
-                KeyInputListener.findAndOpen(inv, (error) -> player.sendMessage(error, player.getUniqueID()), RSAddonsItems.WIRELESS_CRAFTING_GRID, RSAddonsItems.CREATIVE_WIRELESS_CRAFTING_GRID);
+                KeyInputListener.findAndOpen(RSAddonsItems.WIRELESS_CRAFTING_GRID, RSAddonsItems.CREATIVE_WIRELESS_CRAFTING_GRID);
             }
         }
     }
