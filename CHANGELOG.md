@@ -1,5 +1,8 @@
 # Refined Storage Addons Changelog
 
+### 0.7.3
+- Added Curio Support (Darkere)
+
 ### 0.7.2
 - Port to Minecraft 1.16.3 (raoulvdberge)
 
