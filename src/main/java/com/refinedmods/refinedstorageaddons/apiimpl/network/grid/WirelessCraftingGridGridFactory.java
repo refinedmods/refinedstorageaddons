@@ -3,6 +3,7 @@ package com.refinedmods.refinedstorageaddons.apiimpl.network.grid;
 import com.refinedmods.refinedstorage.api.network.grid.GridFactoryType;
 import com.refinedmods.refinedstorage.api.network.grid.IGrid;
 import com.refinedmods.refinedstorage.api.network.grid.IGridFactory;
+import com.refinedmods.refinedstorage.inventory.player.PlayerSlot;
 import com.refinedmods.refinedstorageaddons.RSAddons;
 import com.refinedmods.refinedstorageaddons.item.WirelessCraftingGrid;
 import net.minecraft.entity.player.PlayerEntity;
@@ -19,8 +20,8 @@ public class WirelessCraftingGridGridFactory implements IGridFactory {
 
     @Nullable
     @Override
-    public IGrid createFromStack(PlayerEntity player, ItemStack stack, int slotId) {
-        return new WirelessCraftingGrid(stack, player.world, player.getServer(), slotId);
+    public IGrid createFromStack(PlayerEntity player, ItemStack stack, PlayerSlot slot) {
+        return new WirelessCraftingGrid(stack, player.world, player.getServer(), slot);
     }
 
     @Nullable
