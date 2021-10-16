@@ -6,6 +6,7 @@ import com.refinedmods.refinedstorage.api.network.grid.ICraftingGridListener;
 import com.refinedmods.refinedstorage.api.network.security.Permission;
 import com.refinedmods.refinedstorage.api.util.Action;
 import com.refinedmods.refinedstorage.api.util.IStackList;
+import com.refinedmods.refinedstorage.inventory.player.PlayerSlot;
 import com.refinedmods.refinedstorage.tile.grid.WirelessGrid;
 import com.refinedmods.refinedstorage.util.StackUtils;
 import com.refinedmods.refinedstorageaddons.RSAddons;
@@ -50,8 +51,8 @@ public class WirelessCraftingGrid extends WirelessGrid {
     private CraftingInventory matrix = new CraftingInventory(craftingContainer, 3, 3);
     private CraftResultInventory result = new CraftResultInventory();
 
-    public WirelessCraftingGrid(ItemStack stack, World world, @Nullable MinecraftServer server, int slotId) {
-        super(stack, server, slotId);
+    public WirelessCraftingGrid(ItemStack stack, World world, @Nullable MinecraftServer server, PlayerSlot slot) {
+        super(stack, server, slot);
 
         this.server = server;
         this.world = world;
