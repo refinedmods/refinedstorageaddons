@@ -20,6 +20,8 @@ import net.minecraft.item.crafting.ICraftingRecipe;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.concurrent.ThreadTaskExecutor;
+import net.minecraft.util.concurrent.TickDelayedTask;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
@@ -33,6 +35,7 @@ public class WirelessCraftingGrid extends WirelessGrid {
     private final MinecraftServer server;
     private final World world;
     private Set<ICraftingGridListener> listeners = new HashSet<>();
+    private boolean queuedSave;
 
     private Container craftingContainer = new Container(null, 0) {
         @Override
@@ -46,9 +49,26 @@ public class WirelessCraftingGrid extends WirelessGrid {
                 onCraftingMatrixChanged();
             }
         }
+
     };
     private ICraftingRecipe currentRecipe;
-    private CraftingInventory matrix = new CraftingInventory(craftingContainer, 3, 3);
+    private CraftingInventory matrix = new CraftingInventory(craftingContainer, 3, 3) {
+        @Override
+        public void markDirty() {
+            super.markDirty();
+            if (!queuedSave && server != null) {
+                queuedSave = true;
+                server.enqueue(new TickDelayedTask(0, () -> {
+                    if (!getStack().hasTag()) {
+                        getStack().setTag(new CompoundNBT());
+                    }
+
+                    StackUtils.writeItems(matrix, 1, getStack().getTag());
+                    queuedSave = false;
+                }));
+            }
+        }
+    };
     private CraftResultInventory result = new CraftResultInventory();
 
     public WirelessCraftingGrid(ItemStack stack, World world, @Nullable MinecraftServer server, PlayerSlot slot) {
@@ -87,7 +107,6 @@ public class WirelessCraftingGrid extends WirelessGrid {
         if (currentRecipe == null || !currentRecipe.matches(matrix, world)) {
             currentRecipe = world.getRecipeManager().getRecipe(IRecipeType.CRAFTING, matrix, world).orElse(null);
         }
-
         if (currentRecipe == null) {
             result.setInventorySlotContents(0, ItemStack.EMPTY);
         } else {
