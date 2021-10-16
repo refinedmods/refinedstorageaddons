@@ -1,5 +1,9 @@
 # Refined Storage Addons Changelog
 
+### 0.7.4
+- updated to be compatible with RS 1.9.16
+- fixed a bug where items could be duplicated or voided
+
 ### 0.7.3
 - Added Curio Support (Darkere)
 
