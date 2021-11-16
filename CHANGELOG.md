@@ -1,8 +1,10 @@
 # Refined Storage Addons Changelog
 
 ### 0.7.4
-- updated to be compatible with RS 1.9.16
-- fixed a bug where items could be duplicated or voided
+- Updated to be compatible with RS 1.9.16 (Darkere)
+- Fixed a bug where items could be duplicated or voided (Darkere)
+- Added Italian translation (maicol07)
+- Added Polish translation (joker876)
 
 ### 0.7.3
 - Added Curio Support (Darkere)
