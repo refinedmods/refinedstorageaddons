@@ -1,5 +1,7 @@
 # Refined Storage Addons Changelog
 
+### 0.7.5
+
 ### 0.7.4
 - Updated to be compatible with RS 1.9.16 (Darkere)
 - Fixed a bug where items could be duplicated or voided (Darkere)
