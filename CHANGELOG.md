@@ -5,6 +5,7 @@
 - Fixed a bug where items could be duplicated or voided (Darkere)
 - Added Italian translation (maicol07)
 - Added Polish translation (joker876)
+- Fixes to Russian translation (Bytegm)
 
 ### 0.7.3
 - Added Curio Support (Darkere)
