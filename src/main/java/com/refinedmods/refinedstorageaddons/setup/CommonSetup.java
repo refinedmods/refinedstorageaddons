@@ -3,7 +3,7 @@ package com.refinedmods.refinedstorageaddons.setup;
 import com.refinedmods.refinedstorageaddons.RSAddons;
 import com.refinedmods.refinedstorageaddons.apiimpl.network.grid.WirelessCraftingGridGridFactory;
 import com.refinedmods.refinedstorageaddons.item.WirelessCraftingGridItem;
-import net.minecraft.item.Item;
+import net.minecraft.world.item.Item;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;

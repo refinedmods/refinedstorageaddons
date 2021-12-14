@@ -5,14 +5,12 @@ import com.refinedmods.refinedstorage.screen.KeyInputListener;
 import com.refinedmods.refinedstorageaddons.RSAddonsItems;
 import com.refinedmods.refinedstorageaddons.RSAddonsKeyBindings;
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.item.ItemModelsProperties;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.client.renderer.item.ItemProperties;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.client.ClientRegistry;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
@@ -27,14 +25,14 @@ public class ClientSetup {
 
         ClientRegistry.registerKeyBinding(RSAddonsKeyBindings.OPEN_WIRELESS_CRAFTING_GRID);
 
-        ItemModelsProperties.func_239418_a_(RSAddonsItems.WIRELESS_CRAFTING_GRID, new ResourceLocation("connected"), new NetworkItemPropertyGetter());
-        ItemModelsProperties.func_239418_a_(RSAddonsItems.CREATIVE_WIRELESS_CRAFTING_GRID, new ResourceLocation("connected"), new NetworkItemPropertyGetter());
+        ItemProperties.register(RSAddonsItems.WIRELESS_CRAFTING_GRID, new ResourceLocation("connected"), new NetworkItemPropertyGetter());
+        ItemProperties.register(RSAddonsItems.CREATIVE_WIRELESS_CRAFTING_GRID, new ResourceLocation("connected"), new NetworkItemPropertyGetter());
     }
 
     @SubscribeEvent
     public void onKeyInput(InputEvent.KeyInputEvent e) {
         if (Minecraft.getInstance().player != null) {
-            if (RSAddonsKeyBindings.OPEN_WIRELESS_CRAFTING_GRID.isKeyDown()) {
+            if (RSAddonsKeyBindings.OPEN_WIRELESS_CRAFTING_GRID.isDown()) {
                 KeyInputListener.findAndOpen(RSAddonsItems.WIRELESS_CRAFTING_GRID, RSAddonsItems.CREATIVE_WIRELESS_CRAFTING_GRID);
             }
         }

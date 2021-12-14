@@ -10,21 +10,20 @@ import com.refinedmods.refinedstorage.inventory.player.PlayerSlot;
 import com.refinedmods.refinedstorage.tile.grid.WirelessGrid;
 import com.refinedmods.refinedstorage.util.StackUtils;
 import com.refinedmods.refinedstorageaddons.RSAddons;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.CraftResultInventory;
-import net.minecraft.inventory.CraftingInventory;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.container.Container;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.ICraftingRecipe;
-import net.minecraft.item.crafting.IRecipeType;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.concurrent.ThreadTaskExecutor;
-import net.minecraft.util.concurrent.TickDelayedTask;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.World;
+import net.minecraft.server.TickTask;
+import net.minecraft.world.Container;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.CraftingContainer;
+import net.minecraft.world.inventory.ResultContainer;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.CraftingRecipe;
+import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.level.Level;
 
 import javax.annotation.Nullable;
 import java.util.HashSet;
@@ -33,58 +32,57 @@ import java.util.Set;
 public class WirelessCraftingGrid extends WirelessGrid {
     @Nullable
     private final MinecraftServer server;
-    private final World world;
+    private final Level level;
     private Set<ICraftingGridListener> listeners = new HashSet<>();
     private boolean queuedSave;
 
-    private Container craftingContainer = new Container(null, 0) {
+    private AbstractContainerMenu craftingMenu = new AbstractContainerMenu(null, 0) {
         @Override
-        public boolean canInteractWith(PlayerEntity player) {
+        public boolean stillValid(Player player) {
             return false;
         }
 
         @Override
-        public void onCraftMatrixChanged(IInventory inventory) {
+        public void slotsChanged(Container container) {
             if (server != null) {
                 onCraftingMatrixChanged();
             }
         }
-
     };
-    private ICraftingRecipe currentRecipe;
-    private CraftingInventory matrix = new CraftingInventory(craftingContainer, 3, 3) {
+    private CraftingRecipe currentRecipe;
+    private CraftingContainer craftingContainer = new CraftingContainer(craftingMenu, 3, 3) {
         @Override
-        public void markDirty() {
-            super.markDirty();
+        public void setChanged() {
+            super.setChanged();
             if (!queuedSave && server != null) {
                 queuedSave = true;
-                server.enqueue(new TickDelayedTask(0, () -> {
+                server.doRunTask(new TickTask(0, () -> {
                     if (!getStack().hasTag()) {
-                        getStack().setTag(new CompoundNBT());
+                        getStack().setTag(new CompoundTag());
                     }
 
-                    StackUtils.writeItems(matrix, 1, getStack().getTag());
+                    StackUtils.writeItems(craftingContainer, 1, getStack().getTag());
                     queuedSave = false;
                 }));
             }
         }
     };
-    private CraftResultInventory result = new CraftResultInventory();
+    private ResultContainer craftingResultContainer = new ResultContainer();
 
-    public WirelessCraftingGrid(ItemStack stack, World world, @Nullable MinecraftServer server, PlayerSlot slot) {
+    public WirelessCraftingGrid(ItemStack stack, Level level, @Nullable MinecraftServer server, PlayerSlot slot) {
         super(stack, server, slot);
 
         this.server = server;
-        this.world = world;
+        this.level = level;
 
         if (stack.hasTag()) {
-            StackUtils.readItems(matrix, 1, stack.getTag());
+            StackUtils.readItems(craftingContainer, 1, stack.getTag());
         }
     }
 
     @Override
-    public ITextComponent getTitle() {
-        return new TranslationTextComponent("gui.refinedstorage.crafting_grid");
+    public Component getTitle() {
+        return new TranslatableComponent("gui.refinedstorage.crafting_grid");
     }
 
     @Override
@@ -93,37 +91,37 @@ public class WirelessCraftingGrid extends WirelessGrid {
     }
 
     @Override
-    public CraftingInventory getCraftingMatrix() {
-        return matrix;
+    public CraftingContainer getCraftingMatrix() {
+        return craftingContainer;
     }
 
     @Override
-    public CraftResultInventory getCraftingResult() {
-        return result;
+    public ResultContainer getCraftingResult() {
+        return craftingResultContainer;
     }
 
     @Override
     public void onCraftingMatrixChanged() {
-        if (currentRecipe == null || !currentRecipe.matches(matrix, world)) {
-            currentRecipe = world.getRecipeManager().getRecipe(IRecipeType.CRAFTING, matrix, world).orElse(null);
+        if (currentRecipe == null || !currentRecipe.matches(craftingContainer, level)) {
+            currentRecipe = level.getRecipeManager().getRecipeFor(RecipeType.CRAFTING, craftingContainer, level).orElse(null);
         }
         if (currentRecipe == null) {
-            result.setInventorySlotContents(0, ItemStack.EMPTY);
+            craftingResultContainer.setItem(0, ItemStack.EMPTY);
         } else {
-            result.setInventorySlotContents(0, currentRecipe.getCraftingResult(matrix));
+            craftingResultContainer.setItem(0, currentRecipe.assemble(craftingContainer));
         }
 
         listeners.forEach(ICraftingGridListener::onCraftingMatrixChanged);
 
         if (!getStack().hasTag()) {
-            getStack().setTag(new CompoundNBT());
+            getStack().setTag(new CompoundTag());
         }
 
-        StackUtils.writeItems(matrix, 1, getStack().getTag());
+        StackUtils.writeItems(craftingContainer, 1, getStack().getTag());
     }
 
     @Override
-    public void onCrafted(PlayerEntity player, @Nullable IStackList<ItemStack> availableItems, @Nullable IStackList<ItemStack> usedItems) {
+    public void onCrafted(Player player, @Nullable IStackList<ItemStack> availableItems, @Nullable IStackList<ItemStack> usedItems) {
         RSAddons.RSAPI.getCraftingGridBehavior().onCrafted(this, currentRecipe, player, availableItems, usedItems);
 
         INetwork network = getNetwork();
@@ -134,15 +132,15 @@ public class WirelessCraftingGrid extends WirelessGrid {
     }
 
     @Override
-    public void onClear(PlayerEntity player) {
+    public void onClear(Player player) {
         INetwork network = getNetwork();
 
         if (network != null && network.getSecurityManager().hasPermission(Permission.INSERT, player)) {
-            for (int i = 0; i < matrix.getSizeInventory(); ++i) {
-                ItemStack slot = matrix.getStackInSlot(i);
+            for (int i = 0; i < craftingContainer.getContainerSize(); ++i) {
+                ItemStack slot = craftingContainer.getItem(i);
 
                 if (!slot.isEmpty()) {
-                    matrix.setInventorySlotContents(i, network.insertItem(slot, slot.getCount(), Action.PERFORM));
+                    craftingContainer.setItem(i, network.insertItem(slot, slot.getCount(), Action.PERFORM));
 
                     network.getItemStorageTracker().changed(player, slot.copy());
                 }
@@ -153,12 +151,12 @@ public class WirelessCraftingGrid extends WirelessGrid {
     }
 
     @Override
-    public void onCraftedShift(PlayerEntity player) {
+    public void onCraftedShift(Player player) {
         RSAddons.RSAPI.getCraftingGridBehavior().onCraftedShift(this, player);
     }
 
     @Override
-    public void onRecipeTransfer(PlayerEntity player, ItemStack[][] recipe) {
+    public void onRecipeTransfer(Player player, ItemStack[][] recipe) {
         RSAddons.RSAPI.getCraftingGridBehavior().onRecipeTransfer(this, player, recipe);
     }
 

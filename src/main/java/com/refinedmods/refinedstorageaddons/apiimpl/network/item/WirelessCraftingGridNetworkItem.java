@@ -10,20 +10,20 @@ import com.refinedmods.refinedstorage.util.WorldUtils;
 import com.refinedmods.refinedstorageaddons.RSAddons;
 import com.refinedmods.refinedstorageaddons.apiimpl.network.grid.WirelessCraftingGridGridFactory;
 import com.refinedmods.refinedstorageaddons.item.WirelessCraftingGridItem;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
 
 public class WirelessCraftingGridNetworkItem implements INetworkItem {
-    private INetworkItemManager handler;
-    private PlayerEntity player;
-    private ItemStack stack;
-    private PlayerSlot slot;
+    private final INetworkItemManager handler;
+    private final Player player;
+    private final ItemStack stack;
+    private final PlayerSlot slot;
 
-    public WirelessCraftingGridNetworkItem(INetworkItemManager handler, PlayerEntity player, ItemStack stack, PlayerSlot slot) {
+    public WirelessCraftingGridNetworkItem(INetworkItemManager handler, Player player, ItemStack stack, PlayerSlot slot) {
         this.handler = handler;
         this.player = player;
         this.stack = stack;
@@ -31,7 +31,7 @@ public class WirelessCraftingGridNetworkItem implements INetworkItem {
     }
 
     @Override
-    public PlayerEntity getPlayer() {
+    public Player getPlayer() {
         return player;
     }
 
@@ -54,7 +54,7 @@ public class WirelessCraftingGridNetworkItem implements INetworkItem {
             return false;
         }
 
-        API.instance().getGridManager().openGrid(WirelessCraftingGridGridFactory.ID, (ServerPlayerEntity) player, stack, slot);
+        API.instance().getGridManager().openGrid(WirelessCraftingGridGridFactory.ID, (ServerPlayer) player, stack, slot);
 
         drainEnergy(RSAddons.SERVER_CONFIG.getWirelessCraftingGrid().getOpenUsage());
 
@@ -70,7 +70,7 @@ public class WirelessCraftingGridNetworkItem implements INetworkItem {
                 if (energyStorage.getEnergyStored() <= 0) {
                     handler.close(player);
 
-                    player.closeScreen();
+                    player.closeContainer();
 
                     sendOutOfEnergyMessage();
                 }
@@ -79,6 +79,6 @@ public class WirelessCraftingGridNetworkItem implements INetworkItem {
     }
 
     private void sendOutOfEnergyMessage() {
-        player.sendMessage(new TranslationTextComponent("misc.refinedstorage.network_item.out_of_energy", new TranslationTextComponent(stack.getItem().getTranslationKey())), player.getUniqueID());
+        player.sendMessage(new TranslatableComponent("misc.refinedstorage.network_item.out_of_energy", stack.getItem().getDescription()), player.getUUID());
     }
 }
