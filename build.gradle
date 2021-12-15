@@ -1,17 +1,30 @@
 buildscript {
     repositories {
-        maven { url = 'https://files.minecraftforge.net/maven' }
-        jcenter()
+        maven { url = 'https://maven.minecraftforge.net' }
         mavenCentral()
     }
     dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
     }
+}
+
+plugins {
+    id 'com.matthewprenger.cursegradle' version '1.4.0'
 }
 
 repositories {
     maven {
-        url "https://repo.refinedmods.com"
+        url = uri("https://maven.pkg.github.com/refinedmods/refinedstorage")
+        /* As of december 2021, GitHub packages requires authentication.
+           The password below is a personal access token that has read access to the Refined Mods repos.
+           It can be reused in other projects.
+           See: https://github.community/t/download-from-github-package-registry-without-authentication/14407/38 and
+                https://github.community/t/download-from-github-package-registry-without-authentication/14407/44
+         */
+        credentials {
+            username = "anything"
+            password = "\u0067hp_pnP5hVDYXXhhXwe21IEkrUzGjquUJL0xjLzb"
+        }
     }
 }
 
@@ -19,18 +32,22 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = '0.7.4'
-def env = System.getenv()
-if (env.BUILD_NUMBER) {
-    version = version + "+" + "${env.BUILD_NUMBER}"
-}
 group = 'com.refinedmods'
 archivesBaseName = 'refinedstorageaddons'
+version = '0.8.0'
 
-sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
+if (System.getenv('GITHUB_SHA') != null) {
+    version += '+' + System.getenv('GITHUB_SHA').substring(0, 7)
+}
+
+if (System.getenv('RELEASE') != null) {
+    version = System.getenv('RELEASE').substring(1) // remove 'v'
+}
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 minecraft {
-    mappings channel: 'snapshot', version: '20200723-1.16.1'
+    mappings channel: 'official', version: '1.18.1'
 
     runs {
         client {
@@ -71,22 +88,17 @@ minecraft {
 
 processResources {
     inputs.property 'version', project.version
-
-    from(sourceSets.main.resources.srcDirs) {
-        include 'META-INF/mods.toml'
-
+    filesMatching('META-INF/mods.toml') {
         expand 'version': project.version
-    }
-
-    from(sourceSets.main.resources.srcDirs) {
-        exclude 'META-INF/mods.toml'
     }
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.16.5-36.2.0'
-    compileOnly fg.deobf("com.refinedmods:refinedstorage:1.9.15+190")
-    runtimeOnly fg.deobf("com.refinedmods:refinedstorage:1.9.15+190")
+    minecraft 'net.minecraftforge:forge:1.18.1-39.0.0'
+    compileOnly "com.refinedmods:refinedstorage:1.10.0-beta.1"
+    runtimeOnly fg.deobf("com.refinedmods:refinedstorage:1.10.0-beta.1") {
+        transitive false
+    }
 }
 
 jar {
@@ -103,41 +115,38 @@ jar {
     }
 }
 
-jar.finalizedBy('reobfJar')
-
-task sourcesJar(type: Jar, dependsOn: classes) {
-    classifier = 'sources'
-    from sourceSets.main.allSource
-}
-
-task deobfJar(type:Jar) {
-    from sourceSets.main.output
-    classifier 'deobf'
-}
-
-artifacts {
-    archives jar
-    archives sourcesJar
-    archives deobfJar
-}
-
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            groupId = project.group
-            artifactId = project.archivesBaseName
-            version = project.version
-            artifact jar
-            artifact sourcesJar
-            artifact deobfJar
+if (System.getenv("CURSEFORGE_TOKEN") != null) {
+    curseforge {
+        apiKey = System.getenv("CURSEFORGE_TOKEN")
+        project {
+            id = '272302'
+            changelog = System.getenv("CHANGELOG")
+            changelogType = 'markdown'
+            releaseType = project.version.toString().contains('beta') ? 'beta' : (project.version.toString().contains('alpha') ? 'alpha' : 'release')
+            addGameVersion "1.18.1"
+            mainArtifact(jar) {
+                displayName = "v$project.version"
+            }
         }
     }
 }
 
+jar.finalizedBy('reobfJar')
+
 publishing {
     repositories {
         maven {
-            url "/var/www/repo"
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/refinedmods/refinedstorageaddons")
+            credentials {
+                username = System.getenv("GITHUB_ACTOR")
+                password = System.getenv("GITHUB_TOKEN")
+            }
+        }
+    }
+    publications {
+        gpr(MavenPublication) {
+            from(components.java)
         }
     }
 }

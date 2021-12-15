@@ -6,9 +6,9 @@ import com.refinedmods.refinedstorage.inventory.player.PlayerSlot;
 import com.refinedmods.refinedstorage.item.NetworkItem;
 import com.refinedmods.refinedstorageaddons.RSAddons;
 import com.refinedmods.refinedstorageaddons.apiimpl.network.item.WirelessCraftingGridNetworkItem;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 
 import javax.annotation.Nonnull;
 
@@ -22,7 +22,7 @@ public class WirelessCraftingGridItem extends NetworkItem {
 
     public WirelessCraftingGridItem(Type type) {
         super(
-            new Item.Properties().group(RSAddons.MAIN_GROUP).maxStackSize(1),
+            new Item.Properties().tab(RSAddons.MAIN_GROUP).stacksTo(1),
             type == Type.CREATIVE,
             () -> RSAddons.SERVER_CONFIG.getWirelessCraftingGrid().getCapacity()
         );
@@ -38,7 +38,7 @@ public class WirelessCraftingGridItem extends NetworkItem {
 
     @Override
     @Nonnull
-    public INetworkItem provide(INetworkItemManager handler, PlayerEntity player, ItemStack stack, PlayerSlot slot) {
+    public INetworkItem provide(INetworkItemManager handler, Player player, ItemStack stack, PlayerSlot slot) {
         return new WirelessCraftingGridNetworkItem(handler, player, stack, slot);
     }
 }
