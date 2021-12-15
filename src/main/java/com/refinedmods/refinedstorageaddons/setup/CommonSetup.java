@@ -8,14 +8,17 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
-public class CommonSetup {
+public final class CommonSetup {
+    private CommonSetup() {
+    }
+
     @SubscribeEvent
-    public void onCommonSetup(FMLCommonSetupEvent e) {
+    public static void onCommonSetup(FMLCommonSetupEvent e) {
         RSAddons.RSAPI.getGridManager().add(WirelessCraftingGridGridFactory.ID, new WirelessCraftingGridGridFactory());
     }
 
     @SubscribeEvent
-    public void onRegisterItems(RegistryEvent.Register<Item> e) {
+    public static void onRegisterItems(RegistryEvent.Register<Item> e) {
         e.getRegistry().register(new WirelessCraftingGridItem(WirelessCraftingGridItem.Type.NORMAL));
         e.getRegistry().register(new WirelessCraftingGridItem(WirelessCraftingGridItem.Type.CREATIVE));
     }

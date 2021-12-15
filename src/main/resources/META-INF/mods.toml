@@ -6,7 +6,6 @@ license = "MIT"
 modId = "refinedstorageaddons"
 version = "${version}"
 displayName = "Refined Storage Addons"
-updateJSONURL = "https://refinedmods.com/refined-storage-addons/update.json"
 displayURL = "https://refinedmods.com/refined-storage-addons"
 authors = "Refined Mods"
 description = '''
@@ -14,7 +13,7 @@ An addon mod for Refined Storage
 '''
 [[dependencies.refinedstorageaddons]]
 modId = "refinedstorage"
-versionRange = "[1.10.0,)"
+versionRange = "[1.10.0-beta,)"
 mandatory = true
 ordering = "AFTER"
 side = "BOTH"

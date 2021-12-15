@@ -32,7 +32,7 @@ public class WirelessCraftingGridGridFactory implements IGridFactory {
 
     @Nullable
     @Override
-    public BlockEntity getRelevantTile(Level level, BlockPos pos) {
+    public BlockEntity getRelevantBlockEntity(Level level, BlockPos pos) {
         return null;
     }
 

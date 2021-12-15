@@ -8,6 +8,7 @@ import com.refinedmods.refinedstorageaddons.setup.ClientSetup;
 import com.refinedmods.refinedstorageaddons.setup.CommonSetup;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
@@ -24,13 +25,14 @@ public final class RSAddons {
     public static final MainItemGroup MAIN_GROUP = new MainItemGroup();
 
     public RSAddons() {
-        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ClientSetup::new);
+        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
+            FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientSetup::onClientSetup);
+            MinecraftForge.EVENT_BUS.addListener(ClientSetup::onKeyInput);
+        });
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, SERVER_CONFIG.getSpec());
 
-        CommonSetup commonSetup = new CommonSetup();
-
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(commonSetup::onCommonSetup);
-        FMLJavaModLoadingContext.get().getModEventBus().addGenericListener(Item.class, commonSetup::onRegisterItems);
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(CommonSetup::onCommonSetup);
+        FMLJavaModLoadingContext.get().getModEventBus().addGenericListener(Item.class, CommonSetup::onRegisterItems);
     }
 }

@@ -7,7 +7,7 @@ import com.refinedmods.refinedstorage.api.network.security.Permission;
 import com.refinedmods.refinedstorage.api.util.Action;
 import com.refinedmods.refinedstorage.api.util.IStackList;
 import com.refinedmods.refinedstorage.inventory.player.PlayerSlot;
-import com.refinedmods.refinedstorage.tile.grid.WirelessGrid;
+import com.refinedmods.refinedstorage.blockentity.grid.WirelessGrid;
 import com.refinedmods.refinedstorage.util.StackUtils;
 import com.refinedmods.refinedstorageaddons.RSAddons;
 import net.minecraft.nbt.CompoundTag;
