@@ -8,6 +8,10 @@ buildscript {
     }
 }
 
+plugins {
+    id 'com.matthewprenger.cursegradle' version '1.4.0'
+}
+
 repositories {
     maven {
         url = uri("https://maven.pkg.github.com/refinedmods/refinedstorage")
