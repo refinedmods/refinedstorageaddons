@@ -3,7 +3,7 @@ package com.refinedmods.refinedstorageaddons;
 import com.refinedmods.refinedstorage.api.IRSAPI;
 import com.refinedmods.refinedstorage.api.RSAPIInject;
 import com.refinedmods.refinedstorageaddons.config.ServerConfig;
-import com.refinedmods.refinedstorageaddons.item.group.MainItemGroup;
+import com.refinedmods.refinedstorageaddons.item.group.MainCreativeModeTab;
 import com.refinedmods.refinedstorageaddons.setup.ClientSetup;
 import com.refinedmods.refinedstorageaddons.setup.CommonSetup;
 import net.minecraft.world.item.Item;
@@ -22,7 +22,7 @@ public final class RSAddons {
 
     public static final String ID = "refinedstorageaddons";
     public static final ServerConfig SERVER_CONFIG = new ServerConfig();
-    public static final MainItemGroup MAIN_GROUP = new MainItemGroup();
+    public static final MainCreativeModeTab CREATIVE_MODE_TAB = new MainCreativeModeTab();
 
     public RSAddons() {
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {

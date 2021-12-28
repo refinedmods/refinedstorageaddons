@@ -1,4 +1,4 @@
-# Contributing to Refined Storage
+# Contributing to Refined Storage Addons
 
 ## Versioning
 

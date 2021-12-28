@@ -6,7 +6,7 @@ import com.refinedmods.refinedstorage.api.network.item.INetworkItemManager;
 import com.refinedmods.refinedstorage.api.network.security.Permission;
 import com.refinedmods.refinedstorage.apiimpl.API;
 import com.refinedmods.refinedstorage.inventory.player.PlayerSlot;
-import com.refinedmods.refinedstorage.util.WorldUtils;
+import com.refinedmods.refinedstorage.util.LevelUtils;
 import com.refinedmods.refinedstorageaddons.RSAddons;
 import com.refinedmods.refinedstorageaddons.apiimpl.network.grid.WirelessCraftingGridGridFactory;
 import com.refinedmods.refinedstorageaddons.item.WirelessCraftingGridItem;
@@ -49,7 +49,7 @@ public class WirelessCraftingGridNetworkItem implements INetworkItem {
         }
 
         if (!network.getSecurityManager().hasPermission(Permission.MODIFY, player)) {
-            WorldUtils.sendNoPermissionMessage(player);
+            LevelUtils.sendNoPermissionMessage(player);
 
             return false;
         }

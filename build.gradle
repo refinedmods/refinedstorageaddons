@@ -34,7 +34,7 @@ apply plugin: 'maven-publish'
 
 group = 'com.refinedmods'
 archivesBaseName = 'refinedstorageaddons'
-version = '0.8.0'
+version = '0.8.1'
 
 if (System.getenv('GITHUB_SHA') != null) {
     version += '+' + System.getenv('GITHUB_SHA').substring(0, 7)
@@ -95,8 +95,8 @@ processResources {
 
 dependencies {
     minecraft 'net.minecraftforge:forge:1.18.1-39.0.0'
-    compileOnly "com.refinedmods:refinedstorage:1.10.0-beta.1"
-    runtimeOnly fg.deobf("com.refinedmods:refinedstorage:1.10.0-beta.1") {
+    compileOnly "com.refinedmods:refinedstorage:1.10.0-beta.4"
+    runtimeOnly fg.deobf("com.refinedmods:refinedstorage:1.10.0-beta.4") {
         transitive false
     }
 }

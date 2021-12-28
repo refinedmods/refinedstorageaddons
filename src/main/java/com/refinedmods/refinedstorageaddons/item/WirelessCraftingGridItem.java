@@ -22,7 +22,7 @@ public class WirelessCraftingGridItem extends NetworkItem {
 
     public WirelessCraftingGridItem(Type type) {
         super(
-            new Item.Properties().tab(RSAddons.MAIN_GROUP).stacksTo(1),
+            new Item.Properties().tab(RSAddons.CREATIVE_MODE_TAB).stacksTo(1),
             type == Type.CREATIVE,
             () -> RSAddons.SERVER_CONFIG.getWirelessCraftingGrid().getCapacity()
         );
