@@ -10,6 +10,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Added
 
 - Added support for Refined Storage v1.10.0-beta.4.
+- Added Korean translation by [@mindy15963](https://github.com/mindy15963).
 
 ## [v0.8.0] - 2021-12-15
 
