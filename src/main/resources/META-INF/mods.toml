@@ -1,5 +1,5 @@
 modLoader = "javafml"
-loaderVersion = "[39,)"
+loaderVersion = "[40,)"
 issueTrackerURL = "https://github.com/refinedmods/refinedstorageaddons"
 license = "MIT"
 [[mods]]
@@ -13,7 +13,7 @@ An addon mod for Refined Storage
 '''
 [[dependencies.refinedstorageaddons]]
 modId = "refinedstorage"
-versionRange = "[1.10.0-beta,)"
+versionRange = "[1.10.2,)"
 mandatory = true
 ordering = "AFTER"
 side = "BOTH"
