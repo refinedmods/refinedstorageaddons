@@ -7,6 +7,10 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Added
+
+- French translation by [@dracnis](https://github.com/dracnis).
+
 ### Changed
 
 - Ported to Minecraft 1.18.2.
