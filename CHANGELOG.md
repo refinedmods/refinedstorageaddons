@@ -9,6 +9,16 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 
+- French translation by [@dracnis](https://github.com/dracnis).
+
+### Changed
+
+- Ported to Minecraft 1.18.2.
+
+## [v0.8.1] - 2021-12-28
+
+### Added
+
 - Added support for Refined Storage v1.10.0-beta.4.
 - Added Korean translation by [@mindy15963](https://github.com/mindy15963).
 

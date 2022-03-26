@@ -23,7 +23,7 @@ repositories {
          */
         credentials {
             username = "anything"
-            password = "\u0067hp_pnP5hVDYXXhhXwe21IEkrUzGjquUJL0xjLzb"
+            password = "\u0067hp_oGjcDFCn8jeTzIj4Ke9pLoEVtpnZMP4VQgaX"
         }
     }
 }
@@ -34,7 +34,7 @@ apply plugin: 'maven-publish'
 
 group = 'com.refinedmods'
 archivesBaseName = 'refinedstorageaddons'
-version = '0.8.1'
+version = '0.8.2'
 
 if (System.getenv('GITHUB_SHA') != null) {
     version += '+' + System.getenv('GITHUB_SHA').substring(0, 7)
@@ -47,7 +47,7 @@ if (System.getenv('RELEASE') != null) {
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 minecraft {
-    mappings channel: 'official', version: '1.18.1'
+    mappings channel: 'official', version: '1.18.2'
 
     runs {
         client {
@@ -94,9 +94,9 @@ processResources {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.18.1-39.0.0'
-    compileOnly "com.refinedmods:refinedstorage:1.10.0-beta.4"
-    runtimeOnly fg.deobf("com.refinedmods:refinedstorage:1.10.0-beta.4") {
+    minecraft 'net.minecraftforge:forge:1.18.2-40.0.32'
+    compileOnly "com.refinedmods:refinedstorage:1.10.2"
+    runtimeOnly fg.deobf("com.refinedmods:refinedstorage:1.10.2") {
         transitive false
     }
 }
@@ -123,7 +123,7 @@ if (System.getenv("CURSEFORGE_TOKEN") != null) {
             changelog = System.getenv("CHANGELOG")
             changelogType = 'markdown'
             releaseType = project.version.toString().contains('beta') ? 'beta' : (project.version.toString().contains('alpha') ? 'alpha' : 'release')
-            addGameVersion "1.18.1"
+            addGameVersion "1.18.2"
             mainArtifact(jar) {
                 displayName = "v$project.version"
             }
@@ -141,6 +141,14 @@ publishing {
             credentials {
                 username = System.getenv("GITHUB_ACTOR")
                 password = System.getenv("GITHUB_TOKEN")
+            }
+        }
+        maven {
+            name = "CreeperHost"
+            url = uri("https://maven.creeperhost.net/release")
+            credentials {
+                username = System.getenv("CREEPERHOST_MAVEN_USERNAME")
+                password = System.getenv("CREEPERHOST_MAVEN_TOKEN")
             }
         }
     }
