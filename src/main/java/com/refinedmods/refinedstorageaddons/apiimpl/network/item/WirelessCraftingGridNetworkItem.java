@@ -10,11 +10,11 @@ import com.refinedmods.refinedstorage.util.LevelUtils;
 import com.refinedmods.refinedstorageaddons.RSAddons;
 import com.refinedmods.refinedstorageaddons.apiimpl.network.grid.WirelessCraftingGridGridFactory;
 import com.refinedmods.refinedstorageaddons.item.WirelessCraftingGridItem;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.energy.CapabilityEnergy;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.energy.IEnergyStorage;
 
 public class WirelessCraftingGridNetworkItem implements INetworkItem {
@@ -37,7 +37,7 @@ public class WirelessCraftingGridNetworkItem implements INetworkItem {
 
     @Override
     public boolean onOpen(INetwork network) {
-        IEnergyStorage energy = stack.getCapability(CapabilityEnergy.ENERGY, null).orElse(null);
+        IEnergyStorage energy = stack.getCapability(ForgeCapabilities.ENERGY, null).orElse(null);
 
         if (RSAddons.SERVER_CONFIG.getWirelessCraftingGrid().getUseEnergy() &&
             ((WirelessCraftingGridItem) stack.getItem()).getType() != WirelessCraftingGridItem.Type.CREATIVE &&
@@ -64,7 +64,7 @@ public class WirelessCraftingGridNetworkItem implements INetworkItem {
     @Override
     public void drainEnergy(int energy) {
         if (RSAddons.SERVER_CONFIG.getWirelessCraftingGrid().getUseEnergy() && ((WirelessCraftingGridItem) stack.getItem()).getType() != WirelessCraftingGridItem.Type.CREATIVE) {
-            stack.getCapability(CapabilityEnergy.ENERGY).ifPresent(energyStorage -> {
+            stack.getCapability(ForgeCapabilities.ENERGY).ifPresent(energyStorage -> {
                 energyStorage.extractEnergy(energy, false);
 
                 if (energyStorage.getEnergyStored() <= 0) {
@@ -79,6 +79,6 @@ public class WirelessCraftingGridNetworkItem implements INetworkItem {
     }
 
     private void sendOutOfEnergyMessage() {
-        player.sendMessage(new TranslatableComponent("misc.refinedstorage.network_item.out_of_energy", stack.getItem().getDescription()), player.getUUID());
+        player.sendSystemMessage(Component.translatable("misc.refinedstorage.network_item.out_of_energy", stack.getItem().getDescription()));
     }
 }

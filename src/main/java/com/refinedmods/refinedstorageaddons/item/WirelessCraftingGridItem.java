@@ -28,8 +28,6 @@ public class WirelessCraftingGridItem extends NetworkItem {
         );
 
         this.type = type;
-
-        this.setRegistryName(RSAddons.ID, (type == Type.CREATIVE ? "creative_" : "") + "wireless_crafting_grid");
     }
 
     public Type getType() {

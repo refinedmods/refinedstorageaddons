@@ -12,6 +12,6 @@ public class MainCreativeModeTab extends CreativeModeTab {
 
     @Override
     public ItemStack makeIcon() {
-        return new ItemStack(RSAddonsItems.CREATIVE_WIRELESS_CRAFTING_GRID);
+        return new ItemStack(RSAddonsItems.CREATIVE_WIRELESS_CRAFTING_GRID.get());
     }
 }
