@@ -6,7 +6,6 @@ import com.refinedmods.refinedstorageaddons.config.ServerConfig;
 import com.refinedmods.refinedstorageaddons.item.group.MainCreativeModeTab;
 import com.refinedmods.refinedstorageaddons.setup.ClientSetup;
 import com.refinedmods.refinedstorageaddons.setup.CommonSetup;
-import net.minecraft.world.item.Item;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.DistExecutor;
@@ -28,11 +27,13 @@ public final class RSAddons {
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
             FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientSetup::onClientSetup);
             MinecraftForge.EVENT_BUS.addListener(ClientSetup::onKeyInput);
+            FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientSetup::onRegisterKeymappings);
         });
+
+        RSAddonsItems.register();
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, SERVER_CONFIG.getSpec());
 
         FMLJavaModLoadingContext.get().getModEventBus().addListener(CommonSetup::onCommonSetup);
-        FMLJavaModLoadingContext.get().getModEventBus().addGenericListener(Item.class, CommonSetup::onRegisterItems);
     }
 }
