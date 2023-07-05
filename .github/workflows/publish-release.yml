@@ -15,3 +15,4 @@ jobs:
       mutation-testing: false
       sonarqube: false
       curseforge: true
+      modrinth: true
