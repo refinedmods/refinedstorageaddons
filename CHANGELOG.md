@@ -7,13 +7,17 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
-## [v0.9.0] - 2022-09-30
+### Changed
+
+- Ported to Minecraft 1.20.1.
+
+## [0.9.0] - 2022-09-30
 
 ### Changed
 
 - Ported to Minecraft 1.19.2.
 
-## [v0.8.2] - 2022-03-26
+## [0.8.2] - 2022-03-26
 
 ### Added
 
@@ -23,7 +27,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Ported to Minecraft 1.18.2.
 
-## [v0.8.1] - 2021-12-28
+## [0.8.1] - 2021-12-28
 
 ### Added
 
@@ -183,3 +187,53 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Added
 
 - Initial release for Minecraft 1.12 and Refined Storage 1.5.12.
+
+[Unreleased]: https://github.com/refinedmods/refinedstorageaddons/compare/v0.9.0...HEAD
+
+[0.9.0]: https://github.com/refinedmods/refinedstorageaddons/compare/v0.8.2...v0.9.0
+
+[0.8.2]: https://github.com/refinedmods/refinedstorageaddons/compare/v0.8.1...v0.8.2
+
+[0.8.1]: https://github.com/refinedmods/refinedstorageaddons/compare/vv0.8.0...v0.8.1
+
+[v0.8.0]: https://github.com/refinedmods/refinedstorageaddons/compare/v0.7.4...vv0.8.0
+
+[0.7.4]: https://github.com/refinedmods/refinedstorageaddons/compare/v0.7.3...v0.7.4
+
+[0.7.3]: https://github.com/refinedmods/refinedstorageaddons/compare/v0.7.2...v0.7.3
+
+[0.7.2]: https://github.com/refinedmods/refinedstorageaddons/compare/v0.7.1...v0.7.2
+
+[0.7.1]: https://github.com/refinedmods/refinedstorageaddons/compare/v0.7.0...v0.7.1
+
+[0.7.0]: https://github.com/refinedmods/refinedstorageaddons/compare/v0.6.3...v0.7.0
+
+[0.6.3]: https://github.com/refinedmods/refinedstorageaddons/compare/v0.6.2...v0.6.3
+
+[0.6.2]: https://github.com/refinedmods/refinedstorageaddons/compare/v0.6.1...v0.6.2
+
+[0.6.1]: https://github.com/refinedmods/refinedstorageaddons/compare/v0.6.0...v0.6.1
+
+[0.6.0]: https://github.com/refinedmods/refinedstorageaddons/compare/v0.5.0...v0.6.0
+
+[0.5.0]: https://github.com/refinedmods/refinedstorageaddons/compare/v0.4.5...v0.5.0
+
+[0.4.5]: https://github.com/refinedmods/refinedstorageaddons/compare/v0.4.4...v0.4.5
+
+[0.4.4]: https://github.com/refinedmods/refinedstorageaddons/compare/v0.4.3...v0.4.4
+
+[0.4.3]: https://github.com/refinedmods/refinedstorageaddons/compare/v0.4.2...v0.4.3
+
+[0.4.2]: https://github.com/refinedmods/refinedstorageaddons/compare/v0.4.1...v0.4.2
+
+[0.4.1]: https://github.com/refinedmods/refinedstorageaddons/compare/v0.4.0...v0.4.1
+
+[0.4.0]: https://github.com/refinedmods/refinedstorageaddons/compare/v0.3.0...v0.4.0
+
+[0.3.0]: https://github.com/refinedmods/refinedstorageaddons/compare/v0.2.0...v0.3.0
+
+[0.2.0]: https://github.com/refinedmods/refinedstorageaddons/compare/v0.1.1...v0.2.0
+
+[0.1.1]: https://github.com/refinedmods/refinedstorageaddons/compare/v0.1.0...v0.1.1
+
+[0.1.0]: https://github.com/refinedmods/refinedstorageaddons/releases/tag/v0.1.0

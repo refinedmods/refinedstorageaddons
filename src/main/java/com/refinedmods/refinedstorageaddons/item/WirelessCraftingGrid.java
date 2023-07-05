@@ -19,6 +19,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.inventory.ResultContainer;
+import net.minecraft.world.inventory.TransientCraftingContainer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.CraftingRecipe;
 import net.minecraft.world.item.crafting.RecipeType;
@@ -54,7 +55,7 @@ public class WirelessCraftingGrid extends WirelessGrid {
         }
     };
     private CraftingRecipe currentRecipe;
-    private CraftingContainer craftingContainer = new CraftingContainer(craftingMenu, 3, 3) {
+    private CraftingContainer craftingContainer = new TransientCraftingContainer(craftingMenu, 3, 3) {
         @Override
         public void setChanged() {
             super.setChanged();
@@ -112,7 +113,7 @@ public class WirelessCraftingGrid extends WirelessGrid {
         if (currentRecipe == null) {
             craftingResultContainer.setItem(0, ItemStack.EMPTY);
         } else {
-            craftingResultContainer.setItem(0, currentRecipe.assemble(craftingContainer));
+            craftingResultContainer.setItem(0, currentRecipe.assemble(craftingContainer, level.registryAccess()));
         }
 
         listeners.forEach(ICraftingGridListener::onCraftingMatrixChanged);
