@@ -1,0 +1,17 @@
+name: Publish release
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - closed
+jobs:
+  publish-release:
+    uses: refinedmods/refinedarchitect/.github/workflows/publish-release.yml@v0.6.0
+    secrets: inherit
+    with:
+      project-name: 'Refined Storage Addons'
+      announce: true
+      mutation-testing: false
+      sonarqube: false
+      curseforge: true

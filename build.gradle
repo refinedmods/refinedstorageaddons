@@ -1,16 +1,4 @@
-buildscript {
-    repositories {
-        maven { url = 'https://maven.minecraftforge.net' }
-        mavenCentral()
-    }
-    dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
-    }
-}
-
-plugins {
-    id 'com.matthewprenger.cursegradle' version '1.4.0'
-}
+apply from: "https://raw.githubusercontent.com/refinedmods/refinedarchitect/v0.6.0/helper.gradle"
 
 repositories {
     maven {
@@ -28,133 +16,20 @@ repositories {
     }
 }
 
-apply plugin: 'net.minecraftforge.gradle'
-apply plugin: 'eclipse'
-apply plugin: 'maven-publish'
-
 group = 'com.refinedmods'
+
+forgeProject("refinedstorageaddons")
+
 archivesBaseName = 'refinedstorageaddons'
-version = '0.9.1'
 
-if (System.getenv('GITHUB_SHA') != null) {
-    version += '+' + System.getenv('GITHUB_SHA').substring(0, 7)
-}
-
-if (System.getenv('RELEASE') != null) {
-    version = System.getenv('RELEASE').substring(1) // remove 'v'
-}
-
-java.toolchain.languageVersion = JavaLanguageVersion.of(17)
-
-minecraft {
-    mappings channel: 'official', version: '1.19.2'
-
-    runs {
-        client {
-            workingDirectory project.file('run')
-            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
-            property 'forge.logging.console.level', 'debug'
-            mods {
-                refinedstorageaddons {
-                    source sourceSets.main
-                }
-            }
-        }
-
-        server {
-            workingDirectory project.file('run')
-            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
-            property 'forge.logging.console.level', 'debug'
-            mods {
-                refinedstorageaddons {
-                    source sourceSets.main
-                }
-            }
-        }
-
-        data {
-            workingDirectory project.file('run')
-            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
-            property 'forge.logging.console.level', 'debug'
-            args '--mod', 'refinedstorageaddons', '--all', '--output', file('src/generated/resources/')
-            mods {
-                refinedstorageaddons {
-                    source sourceSets.main
-                }
-            }
-        }
-    }
-}
-
-processResources {
-    inputs.property 'version', project.version
-    filesMatching('META-INF/mods.toml') {
-        expand 'version': project.version
-    }
-}
+enablePublishing()
+enableCurseForge(272302)
+enableModrinth("Z4Z5ccuT")
+enableJavadoc()
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.19.2-43.1.32'
-    compileOnly "com.refinedmods:refinedstorage:1.11.0"
-    runtimeOnly fg.deobf("com.refinedmods:refinedstorage:1.11.0") {
+    compileOnly "com.refinedmods:refinedstorage:1.12.1"
+    runtimeOnly fg.deobf("com.refinedmods:refinedstorage:1.12.1") {
         transitive false
-    }
-}
-
-jar {
-    manifest {
-        attributes([
-                "Specification-Title"     : "refinedstorageaddons",
-                "Specification-Vendor"    : "refinedmods",
-                "Specification-Version"   : "1",
-                "Implementation-Title"    : project.name,
-                "Implementation-Version"  : "${version}",
-                "Implementation-Vendor"   : "refinedmods",
-                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
-        ])
-    }
-}
-
-if (System.getenv("CURSEFORGE_TOKEN") != null) {
-    curseforge {
-        apiKey = System.getenv("CURSEFORGE_TOKEN")
-        project {
-            id = '272302'
-            changelog = System.getenv("CHANGELOG")
-            changelogType = 'markdown'
-            releaseType = project.version.toString().contains('beta') ? 'beta' : (project.version.toString().contains('alpha') ? 'alpha' : 'release')
-            addGameVersion "1.19.2"
-            mainArtifact(jar) {
-                displayName = "v$project.version"
-            }
-        }
-    }
-}
-
-jar.finalizedBy('reobfJar')
-
-publishing {
-    repositories {
-        maven {
-            name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/refinedmods/refinedstorageaddons")
-            credentials {
-                username = System.getenv("GITHUB_ACTOR")
-                password = System.getenv("GITHUB_TOKEN")
-            }
-        }
-        maven {
-            name = "CreeperHost"
-            url = uri("https://maven.creeperhost.net/release")
-            credentials {
-                username = System.getenv("CREEPERHOST_MAVEN_USERNAME")
-                password = System.getenv("CREEPERHOST_MAVEN_TOKEN")
-            }
-        }
-    }
-    publications {
-        gpr(MavenPublication) {
-            from(components.java)
-        }
     }
 }
