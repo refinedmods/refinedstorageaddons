@@ -18,6 +18,7 @@ Currently, Refined Storage Addons only adds the "Wireless Crafting Grid", a wire
 - [CurseForge](https://curseforge.com/minecraft/mc-mods/refined-storage-addons)
 - [Modrinth](https://modrinth.com/mod/refined-storage-addons)
 - [Wiki](https://refinedmods.com/refined-storage-addons/)
+- [Javadoc](https://refinedmods.com/javadoc/refinedstorageaddons)
 - [Discord](https://discordapp.com/invite/VYzsydb)
 - [Twitter](https://twitter.com/refinedmods)
 - [Mastodon](https://anvil.social/@refinedmods)
