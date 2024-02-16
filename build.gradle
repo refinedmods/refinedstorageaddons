@@ -1,4 +1,4 @@
-apply from: "https://raw.githubusercontent.com/refinedmods/refinedarchitect/v0.7.1/helper.gradle"
+apply from: "https://raw.githubusercontent.com/refinedmods/refinedarchitect/v0.11.4/helper.gradle"
 
 repositories {
     maven {
@@ -28,8 +28,8 @@ enableModrinth("Z4Z5ccuT")
 enableJavadoc()
 
 dependencies {
-    compileOnly "com.refinedmods:refinedstorage:1.12.1"
-    runtimeOnly fg.deobf("com.refinedmods:refinedstorage:1.12.1") {
-        transitive false
+    compileOnly "com.refinedmods:refinedstorage:1.13.0-beta.2"
+    runtimeOnly("com.refinedmods:refinedstorage:1.13.0-beta.2") {
+        transitive = false
     }
 }
