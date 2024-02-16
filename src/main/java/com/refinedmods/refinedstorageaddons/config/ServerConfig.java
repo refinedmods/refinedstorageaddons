@@ -1,11 +1,11 @@
 package com.refinedmods.refinedstorageaddons.config;
 
-import net.minecraftforge.common.ForgeConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec;
 
 public class ServerConfig {
-    private ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
-    private ForgeConfigSpec spec;
-    private WirelessCraftingGrid wirelessCraftingGrid;
+    private final ModConfigSpec.Builder builder = new ModConfigSpec.Builder();
+    private final ModConfigSpec spec;
+    private final WirelessCraftingGrid wirelessCraftingGrid;
 
     public ServerConfig() {
         wirelessCraftingGrid = new WirelessCraftingGrid();
@@ -18,11 +18,11 @@ public class ServerConfig {
     }
 
     public class WirelessCraftingGrid {
-        private final ForgeConfigSpec.BooleanValue useEnergy;
-        private final ForgeConfigSpec.IntValue capacity;
-        private final ForgeConfigSpec.IntValue openUsage;
-        private final ForgeConfigSpec.IntValue craftUsage;
-        private final ForgeConfigSpec.IntValue clearUsage;
+        private final ModConfigSpec.BooleanValue useEnergy;
+        private final ModConfigSpec.IntValue capacity;
+        private final ModConfigSpec.IntValue openUsage;
+        private final ModConfigSpec.IntValue craftUsage;
+        private final ModConfigSpec.IntValue clearUsage;
 
         public WirelessCraftingGrid() {
             builder.push("wirelessCraftingGrid");
@@ -57,7 +57,7 @@ public class ServerConfig {
         }
     }
 
-    public ForgeConfigSpec getSpec() {
+    public ModConfigSpec getSpec() {
         return spec;
     }
 }
