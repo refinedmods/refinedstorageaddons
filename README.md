@@ -1,5 +1,7 @@
 # Refined Storage Addons [![Build Status](https://github.com/refinedmods/refinedstorageaddons/actions/workflows/build.yml/badge.svg?branch=develop)](https://github.com/refinedmods/refinedstorageaddons/actions/workflows/build.yml) [![Downloads on CurseForge](http://cf.way2muchnoise.eu/full_272302_downloads.svg)](http://minecraft.curseforge.com/projects/refined-storage-addons) [![Downloads on Modrinth](https://img.shields.io/modrinth/dt/refined-storage-addons?logo=modrinth)](https://modrinth.com/mod/refined-storage-addons) [![Discord](https://img.shields.io/discord/342942776494653441)](https://discordapp.com/invite/VYzsydb) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE.md)
 
+> NOTE: Starting from Minecraft 1.21.1, this project has been replaced with [Quartz Arsenal](https://github.com/refinedmods/refinedstorage-quartz-arsenal).
+
 ## About
 
 This is an addon mod for Refined Storage.
